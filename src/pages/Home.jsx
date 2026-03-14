@@ -1,0 +1,333 @@
+import { Link } from 'react-router-dom';
+import './Home.css';
+
+const features = [
+  {
+    icon: '🎯',
+    title: 'Structured Learning Paths',
+    desc: 'From bonjour to fluency — our curriculum follows CEFR standards (A1 to C2), guiding you step by step with clarity and purpose.',
+  },
+  {
+    icon: '🎙️',
+    title: 'Live Pronunciation Coaching',
+    desc: 'Master the infamous French "r" and nasal vowels with AI-powered pronunciation feedback and live tutor sessions.',
+  },
+  {
+    icon: '🧠',
+    title: 'Spaced Repetition Memory',
+    desc: 'Our smart flashcard system uses proven cognitive science to lock vocabulary into your long-term memory.',
+  },
+  {
+    icon: '🇫🇷',
+    title: 'Immersive French Culture',
+    desc: 'Language is culture. Explore French cinema, cuisine, history, and etiquette while you learn to speak like a native.',
+  },
+  {
+    icon: '📱',
+    title: 'Learn Anywhere, Anytime',
+    desc: 'Fully responsive on all devices. Pick up your lesson on the metro, at a café, or from the comfort of your couch.',
+  },
+  {
+    icon: '🏆',
+    title: 'Certified Achievements',
+    desc: 'Earn MapleLingua achievement badges and prepare for internationally recognized DELF/DALF certifications.',
+  },
+];
+
+const stats = [
+  { value: '12K+', label: 'Active Learners' },
+  { value: '95%', label: 'Satisfaction Rate' },
+  { value: '40+', label: 'Expert Tutors' },
+  { value: '500+', label: 'Lessons Available' },
+];
+
+const testimonials = [
+  {
+    name: 'Priya Sharma',
+    location: 'Mumbai, India',
+    avatar: 'PS',
+    rating: 5,
+    text: 'MapleLingua transformed my French entirely. Within 6 months I passed my DELF B2 exam. The cultural immersion approach is unlike anything else online.',
+  },
+  {
+    name: 'James O\'Connor',
+    location: 'Toronto, Canada',
+    avatar: 'JO',
+    rating: 5,
+    text: 'The live sessions are incredible. My tutor, Sophie, made every class feel like a conversation in a Parisian café. I\'m now working in a French company!',
+  },
+  {
+    name: 'Aisha Malik',
+    location: 'Dubai, UAE',
+    avatar: 'AM',
+    rating: 5,
+    text: 'I tried 4 other platforms before MapleLingua. This is the only one that kept me engaged. The UI is beautiful, the content is rich, and it actually works.',
+  },
+];
+
+const levels = [
+  { level: 'A1–A2', name: 'Débutant', desc: 'Greetings, numbers, everyday phrases', color: '#4CAF50' },
+  { level: 'B1–B2', name: 'Intermédiaire', desc: 'Travel, work, culture & conversation', color: '#C9A84C' },
+  { level: 'C1–C2', name: 'Avancé', desc: 'Fluent discourse, literature & business', color: '#9C27B0' },
+];
+
+export default function Home() {
+  return (
+    <main className="home">
+      {/* ===== HERO ===== */}
+      <section className="hero" id="hero">
+        {/* Decorative orbs */}
+        <div className="hero__orb hero__orb--1" />
+        <div className="hero__orb hero__orb--2" />
+        <div className="hero__orb hero__orb--3" />
+
+        <div className="container hero__content">
+          <div className="hero__text animate-fadeUp">
+            <div className="badge badge-gold mb-md">
+              <span>🇫🇷</span> Premier French Learning Platform
+            </div>
+            <h1 className="display-1 text-white hero__heading">
+              Speak French with
+              <br />
+              <em className="gradient-text">Confidence & Grace</em>
+            </h1>
+            <p className="lead hero__subtext">
+              MapleLingua blends world-class pedagogy with immersive French culture — giving you the language, the accent, and the elegance to truly <em>belong</em> in the French-speaking world.
+            </p>
+            <div className="hero__actions">
+              <Link to="/contact" className="btn btn-primary btn-lg" id="hero-cta-primary">
+                🚀 Start Free Today
+              </Link>
+              <Link to="/about" className="btn btn-outline btn-lg" id="hero-cta-secondary">
+                Discover Our Story
+              </Link>
+            </div>
+
+            {/* Trust stamps */}
+            <div className="hero__trust">
+              <div className="trust-item">
+                <span className="trust-stars">★★★★★</span>
+                <span>4.9 / 5 from 2,400+ reviews</span>
+              </div>
+              <span className="trust-divider">|</span>
+              <div className="trust-item">🔒 No credit card required</div>
+              <span className="trust-divider">|</span>
+              <div className="trust-item">✅ Free 14-day trial</div>
+            </div>
+          </div>
+
+          {/* Hero Card */}
+          <div className="hero__card animate-fadeUp delay-300">
+            <div className="hero-card">
+              <div className="hero-card__header">
+                <div className="hero-card__flag">🇫🇷</div>
+                <div>
+                  <div className="hero-card__label">Today's Lesson</div>
+                  <div className="hero-card__title">Les Salutations</div>
+                </div>
+                <span className="badge badge-gold">A1</span>
+              </div>
+              <div className="hero-card__phrase">
+                <div className="phrase-row">
+                  <span className="phrase-fr">Bonjour !</span>
+                  <span className="phrase-en">Good morning!</span>
+                </div>
+                <div className="phrase-row">
+                  <span className="phrase-fr">Comment allez-vous ?</span>
+                  <span className="phrase-en">How are you?</span>
+                </div>
+                <div className="phrase-row">
+                  <span className="phrase-fr">Enchanté(e) !</span>
+                  <span className="phrase-en">Pleased to meet you!</span>
+                </div>
+                <div className="phrase-row">
+                  <span className="phrase-fr">Au revoir !</span>
+                  <span className="phrase-en">Goodbye!</span>
+                </div>
+              </div>
+              <div className="hero-card__progress">
+                <span>Lesson Progress</span>
+                <span>78%</span>
+              </div>
+              <div className="hero-card__bar">
+                <div className="hero-card__bar-fill" style={{ width: '78%' }} />
+              </div>
+              <div className="hero-card__stats">
+                <div className="hc-stat"><span>🔥</span> 12-day streak</div>
+                <div className="hc-stat"><span>📚</span> 48 words learned</div>
+                <div className="hc-stat"><span>⭐</span> 320 XP</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Scroll hint */}
+        <div className="hero__scroll">
+          <span>Scroll to explore</span>
+          <div className="scroll-mouse"><div className="scroll-dot" /></div>
+        </div>
+      </section>
+
+      {/* ===== STATS BANNER ===== */}
+      <section className="stats-banner" id="stats">
+        <div className="container">
+          <div className="stats-grid">
+            {stats.map((s, i) => (
+              <div className="stat-item" key={i} id={`stat-${i}`}>
+                <div className="stat-value gradient-text">{s.value}</div>
+                <div className="stat-label">{s.label}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ===== LEVELS ===== */}
+      <section className="section" id="levels">
+        <div className="container text-center">
+          <p className="section-label">Find Your Level</p>
+          <h2 className="heading-1 mb-md">Courses for Every Stage</h2>
+          <p className="lead text-secondary mb-xl" style={{ maxWidth: 600, margin: '0 auto var(--space-xl)' }}>
+            Whether you're saying "bonjour" for the first time or polishing your Parisian accent, we have a path for you.
+          </p>
+          <div className="grid-3">
+            {levels.map((l, i) => (
+              <div className="level-card card" key={i} id={`level-card-${i}`}>
+                <div className="level-badge" style={{ background: l.color }}>{l.level}</div>
+                <h3 className="heading-2 mt-md">{l.name}</h3>
+                <p className="text-secondary mt-sm">{l.desc}</p>
+                <Link to="/contact" className="btn btn-navy mt-md" style={{ display: 'inline-flex' }} id={`level-cta-${i}`}>
+                  Enroll Now
+                </Link>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ===== FEATURES ===== */}
+      <section className="section features-section" id="features">
+        <div className="container">
+          <div className="text-center mb-xl">
+            <p className="section-label">Why MapleLingua</p>
+            <h2 className="heading-1">Everything You Need to Become Fluent</h2>
+          </div>
+          <div className="grid-3 features-grid">
+            {features.map((f, i) => (
+              <div className="feature-card" key={i} id={`feature-${i}`}>
+                <div className="feature-icon">{f.icon}</div>
+                <h3 className="heading-3 mt-md">{f.title}</h3>
+                <p className="text-secondary mt-sm body-lg">{f.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ===== HOW IT WORKS ===== */}
+      <section className="section how-section" id="how-it-works">
+        <div className="container">
+          <div className="how-grid">
+            <div className="how-text">
+              <p className="section-label">How It Works</p>
+              <h2 className="heading-1 mb-md">
+                Your Fluency Journey in <span className="gradient-text">4 Simple Steps</span>
+              </h2>
+              <div className="steps">
+                {[
+                  { n: '01', title: 'Take a Free Assessment', desc: 'Our 5-minute level test places you in the perfect course, no guesswork.' },
+                  { n: '02', title: 'Follow Your Personalized Plan', desc: 'AI-curated lessons adapt to your pace, interests, and learning style.' },
+                  { n: '03', title: 'Practice with Real Tutors', desc: 'Book live 1-on-1 sessions with native French speakers anytime.' },
+                  { n: '04', title: 'Track Progress & Celebrate', desc: 'Earn certificates, badges, and watch your fluency grow week by week.' },
+                ].map((s, i) => (
+                  <div className="step" key={i} id={`step-${i}`}>
+                    <span className="step-num">{s.n}</span>
+                    <div>
+                      <h4 className="heading-3">{s.title}</h4>
+                      <p className="text-secondary mt-sm">{s.desc}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <Link to="/contact" className="btn btn-primary btn-lg mt-lg" id="how-cta">
+                Begin My Journey
+              </Link>
+            </div>
+            <div className="how-visual">
+              <div className="visual-card animate-float">
+                <div className="vc-top">
+                  <span className="vc-flag">🇫🇷</span>
+                  <span className="vc-title">Weekly Summary</span>
+                </div>
+                <div className="vc-bars">
+                  {['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'].map((d, i) => {
+                    const heights = [60, 85, 45, 90, 70, 55, 80];
+                    return (
+                      <div className="vc-bar-wrap" key={d}>
+                        <div
+                          className="vc-bar"
+                          style={{ height: `${heights[i]}%`, opacity: i === 3 ? 1 : 0.6 }}
+                        />
+                        <span className="vc-day">{d}</span>
+                      </div>
+                    );
+                  })}
+                </div>
+                <div className="vc-footer">
+                  <span>🏆 Best week yet!</span>
+                  <span className="text-gold">+24% progress</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ===== TESTIMONIALS ===== */}
+      <section className="section testimonials-section" id="testimonials">
+        <div className="container">
+          <div className="text-center mb-xl">
+            <p className="section-label">What Learners Say</p>
+            <h2 className="heading-1">Stories of Real Transformation</h2>
+          </div>
+          <div className="grid-3">
+            {testimonials.map((t, i) => (
+              <div className="testimonial-card" key={i} id={`testimonial-${i}`}>
+                <div className="testi-quote">"</div>
+                <p className="testi-text">"{t.text}"</p>
+                <div className="testi-rating">{'★'.repeat(t.rating)}</div>
+                <div className="testi-author">
+                  <div className="avatar">{t.avatar}</div>
+                  <div>
+                    <div className="testi-name">{t.name}</div>
+                    <div className="testi-loc">{t.location}</div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ===== CTA BANNER ===== */}
+      <section className="cta-banner" id="cta-banner">
+        <div className="container text-center">
+          <p className="section-label" style={{ color: 'var(--gold-400)', display: 'flex', justifyContent: 'center' }}>
+            Limited Time
+          </p>
+          <h2 className="display-2 text-white mb-md">
+            Start Speaking French <br />
+            <span className="gradient-text">in Just 30 Days</span>
+          </h2>
+          <p className="lead mb-lg" style={{ color: 'rgba(255,255,255,0.7)', maxWidth: 560, margin: '0 auto var(--space-lg)' }}>
+            Join 12,000+ learners who chose MapleLingua. Your first two weeks are completely free — no credit card needed.
+          </p>
+          <div className="flex-center gap-md" style={{ flexWrap: 'wrap' }}>
+            <Link to="/contact" className="btn btn-primary btn-lg" id="cta-banner-btn">🎯 Claim My Free Access</Link>
+            <Link to="/blog" className="btn btn-outline btn-lg" id="cta-banner-blog">Read Our Blog</Link>
+          </div>
+        </div>
+      </section>
+    </main>
+  );
+}
