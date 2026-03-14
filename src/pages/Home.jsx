@@ -70,6 +70,73 @@ const levels = [
   { level: 'B1–B2', name: 'Intermédiaire', desc: 'Travel, work, culture & conversation', color: '#C9A84C' },
   { level: 'C1–C2', name: 'Avancé', desc: 'Fluent discourse, literature & business', color: '#9C27B0' },
 ];
+const frenchPrograms = [
+{
+title: "French for Beginners (A1-A2)",
+badge: "FOUNDATIONAL",
+desc: "Master the basics of French grammar, pronunciation and daily conversation.",
+points: [
+"Daily Conversation Practice",
+"Interactive Cultural Lessons",
+"Live Tutor Sessions"
+]
+},
+
+{
+title: "Intermediate French (B1-B2)",
+badge: "FLUENT",
+desc: "Develop confidence in real-world conversations and complex expressions.",
+points: [
+"Thematic Learning Units",
+"Grammar & Expression Mastery",
+"Pronunciation Improvement"
+]
+},
+
+{
+title: "Advanced Fluency (C1-C2)",
+badge: "EXPERT",
+desc: "Achieve near-native fluency with advanced writing and discussion.",
+points: [
+"Advanced Grammar Mastery",
+"Academic Writing Skills",
+"Debate & Discussion Practice"
+]
+},
+
+{
+title: "DELF / DALF Preparation",
+badge: "ACADEMIC",
+desc: "Prepare for globally recognized French language certifications.",
+points: [
+"Mock Exam Practice",
+"Exam Strategy Training",
+"Personalized Feedback"
+]
+},
+
+{
+title: "TEF Canada Preparation",
+badge: "IMMIGRATION",
+desc: "Special preparation for TEF exam required for Canada immigration.",
+points: [
+"Listening & Speaking Practice",
+"TEF Mock Tests",
+"Score Improvement Strategy"
+]
+},
+
+{
+title: "French for Professionals",
+badge: "CAREER",
+desc: "Learn business French for workplace communication and meetings.",
+points: [
+"Business Communication",
+"Professional Email Writing",
+"Meeting & Presentation Skills"
+]
+}
+];
 
 export default function Home() {
   return (
@@ -204,6 +271,52 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* ===== FRENCH PROGRAMS ===== */}
+<section className="section" id="programs">
+
+<div className="container">
+
+<div className="text-center mb-xl">
+<p className="section-label">French Language Programs</p>
+<h2 className="heading-1">French Language Programs</h2>
+</div>
+
+<div className="program-grid">
+
+{frenchPrograms.map((p,i)=>(
+<div className="program-card" key={i}>
+
+<span className="program-badge">{p.badge}</span>
+
+<h3>{p.title}</h3>
+
+<p>{p.desc}</p>
+
+<ul>
+{p.points.map((point,index)=>(
+<li key={index}>{point}</li>
+))}
+</ul>
+
+<div className="program-buttons">
+<Link to="/contact" className="btn btn-primary">
+Enroll Now
+</Link>
+
+<button className="btn btn-outline">
+Syllabus
+</button>
+</div>
+
+</div>
+))}
+
+</div>
+</div>
+</section>
+
+
 
       {/* ===== FEATURES ===== */}
       <section className="section features-section" id="features">

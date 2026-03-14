@@ -124,7 +124,7 @@ const [formData, setFormData] = useState({
               <div className="map-placeholder">
                 <div className="map-inner">
                   <span className="map-pin">📍</span>
-                  <p>270 Spadina Ave, Toronto</p>
+                  <p> Dwarka, New Delhi, India </p>
                   <p className="body-sm text-muted">Open in Google Maps →</p>
                 </div>
               </div>

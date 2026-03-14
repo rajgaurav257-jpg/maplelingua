@@ -312,6 +312,67 @@
   color: white;
   letter-spacing: 0.08em;
 }
+/* ===== PROGRAMS ===== */
+
+.program-grid{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:2rem;
+margin-top:3rem;
+
+}
+
+.program-card{
+background:#ffffff;
+padding:2rem;
+border-radius:14px;
+border:1px solid #eee;
+display:flex;
+flex-direction:column;
+justify-content:space-between;
+min-height:320px;
+transition:0.3s;
+border: 2px solid #C9A84C;
+}
+
+.program-card:hover{
+transform:translateY(-6px);
+box-shadow:0 10px 25px rgba(0,0,0,0.08);
+}
+
+.program-badge{
+font-size:12px;
+font-weight:600;
+color:#C9A84C;
+border:1px solid #C9A84C;
+padding:4px 10px;
+border-radius:20px;
+width:fit-content;
+margin-bottom:10px;
+}
+
+.program-card h3{
+margin:8px 0;
+font-size:20px;
+}
+
+.program-card ul{
+margin-top:10px;
+padding-left:18px;
+}
+
+.program-card li{
+margin-bottom:6px;
+font-size:14px;
+}
+
+.program-buttons{
+display:flex;
+gap:10px;
+margin-top:20px;
+}
+
+
 
 /* ======= FEATURES ======= */
 .features-section {
