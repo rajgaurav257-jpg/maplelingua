@@ -9,32 +9,31 @@ import './Contact.css';
 // 3. Deploy as Web App (anyone can access)
 // 4. Replace the URL below with your deployed Web App URL
 // ============================================================
-const GOOGLE_SCRIPT_URL = 'YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE';
+const GOOGLE_SCRIPT_URL = 'https://script.google.com/a/macros/mangotreetech.com/s/AKfycbyV7hsl31NUWl7mL8zFAnbUjSV-xlUtS00XUmEjfsU0Ji_JgzmfQA3fb_bnDQmVwQEOFQ/exec';
 
 const contactInfo = [
-  { icon: '📍', label: 'Address', value: '270 Spadina Ave, Toronto, ON, Canada' },
+  { icon: '📍', label: 'Address', value: 'Dwarka, New Delhi, India' },
   { icon: '📧', label: 'Email', value: 'hello@maplelingua.ca' },
-  { icon: '📞', label: 'Phone', value: '+1 (416) 555-0178' },
+  { icon: '📞', label: 'Phone', value: '+91-98765 43210' },
   { icon: '🕐', label: 'Hours', value: 'Mon–Fri: 9AM – 6PM EST' },
 ];
 
-const topics = [
-  'General Enquiry',
-  'Course Information',
-  'Tutoring & Sessions',
-  'Partnerships',
-  'Technical Support',
-  'Media & Press',
+const languages = [
+  'French',
+  'German',
+  'Italian',
+  'Spanish',
+  'English'
 ];
 
 export default function Contact() {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    topic: '',
-    message: '',
-  });
+const [formData, setFormData] = useState({
+  name: '',
+  email: '',
+  phone: '',
+  language: '',
+  message: '',
+});
   const [status, setStatus] = useState('idle'); // idle | loading | success | error
 
   const handleChange = e => {
@@ -61,8 +60,7 @@ export default function Contact() {
 
       // With no-cors we can't read the response, so we assume success
       setStatus('success');
-      setFormData({ name: '', email: '', phone: '', topic: '', message: '' });
-    } catch (err) {
+      setFormData({ name: '', email: '', phone: '', language: '', message: '' });    } catch (err) {
       console.error(err);
       setStatus('error');
     }
@@ -77,10 +75,10 @@ export default function Contact() {
         <div className="container text-center" style={{ position: 'relative', zIndex: 1 }}>
           <div className="badge badge-gold mb-md" style={{ display: 'inline-flex' }}>Get in Touch</div>
           <h1 className="display-2 text-white mb-md">
-            We'd Love to <span className="gradient-text">Hear From You</span>
+            Learn <span className="gradient-text">French with Confidence</span>
           </h1>
           <p className="lead" style={{ color: 'rgba(255,255,255,0.7)', maxWidth: 560, margin: '0 auto' }}>
-            Whether you have a question, want to partner with us, or simply want to say bonjour — our team is here and excited to connect.
+            Start your journey to speak French fluently. Join MapleLingua and learn from expert tutors with practical conversations from day one.
           </p>
         </div>
       </section>
@@ -190,26 +188,29 @@ export default function Contact() {
                           name="phone"
                           type="tel"
                           className="form-input"
-                          placeholder="+1 (000) 000-0000"
+                          placeholder="+91 98765 43210"
                           value={formData.phone}
                           onChange={handleChange}
                         />
                       </div>
                       <div className="form-group">
-                        <label className="form-label" htmlFor="contact-topic">Topic *</label>
-                        <select
-                          id="contact-topic"
-                          name="topic"
-                          className="form-input form-select"
-                          value={formData.topic}
-                          onChange={handleChange}
-                          required
-                        >
-                          <option value="">Select a topic...</option>
-                          {topics.map(t => (
-                            <option key={t} value={t}>{t}</option>
-                          ))}
-                        </select>
+                        <label className="form-label" htmlFor="contact-language">Language *</label>
+
+                      <select
+                        id="contact-language"
+                        name="language"
+                        className="form-input form-select"
+                        value={formData.language}
+                        onChange={handleChange}
+                         required
+                         >
+                          <option value="">Select language...</option>
+
+                          {languages.map(lang => (
+                            <option key={lang} value={lang}>{lang}</option>
+                            ))}
+
+                            </select>
                       </div>
                     </div>
 
