@@ -10,53 +10,49 @@
      ============================================= */
 
   /* Core Brand Colors */
-  --brand-primary: #4F46E5;    /* Luxury Indigo */
-  --brand-primary-hover: #4338CA;
-  --brand-secondary: #C5A059;  /* Burnished Gold */
-  --brand-secondary-light: #F8F3E8; /* Champagne Glow */
+  --brand-primary: #111827;    /* Deep Onyx (Matches reference) */
+  --brand-primary-hover: #1F2937;
+  --brand-secondary: #C5A034;  /* Premium Gold/Bronze (Matches reference) */
+  --brand-secondary-light: #FAF8F4; /* Creamy Silk */
 
   /* Neutral Spectrum */
-  --slate-900: #0F172A;        /* Only for text */
-  --slate-800: #1E293B;
-  --slate-700: #334155;
-  --slate-600: #475569;
-  --slate-500: #64748B;
-  --slate-400: #94A3B8;
-  --slate-200: #E2E8F0;
-  --slate-100: #F1F5F9;
-  --slate-50: #F8FAFC;
+  --slate-900: #111827;        
+  --slate-800: #1F2937;
+  --slate-700: #374151;
+  --slate-600: #4B5563;
+  --slate-500: #6B7280;
+  --slate-400: #9CA3AF;
+  --slate-200: #E5E7EB;
+  --slate-100: #F3F4F6;
+  --slate-5: #F9F7F2;          /* Light Champagne */
 
   /* Backgrounds */
-  --bg-main: #FFFFFF;          /* Pure White Base */
-  --bg-secondary: #FBFBFE;     /* Pearl Softness */
+  --bg-main: #F9F7F2;          /* Matches reference creamy background */
+  --bg-secondary: #FFFFFF;     
   --bg-card: #FFFFFF;
-  --bg-accent: #F8F3E8;        /* Champagne Highlight */
+  --bg-accent: #FAF8F4;        
 
   /* Text Colors */
   --white: #FFFFFF;
-  --text-primary: #1E293B;     /* Midnight Slate */
-  --text-secondary: #475569;   /* Cool Slate */
-  --text-muted: #64748B;
+  --text-primary: #111827;     
+  --text-secondary: #4B5563;   
+  --text-muted: #6B7280;
 
   /* Interaction & States */
-  --glow-primary: rgba(79, 70, 229, 0.08);
-  --glow-secondary: rgba(197, 160, 89, 0.12);
+  --glow-primary: rgba(17, 24, 39, 0.05);
 
   /* Gradients */
-  --grad-hero: linear-gradient(135deg, #FFFFFF 0%, #F1F5F9 100%);
-  --grad-primary: linear-gradient(135deg, #4F46E5 0%, #6366F1 100%);
-  --grad-accent: linear-gradient(135deg, #C5A059 0%, #B38B42 100%);
-  --grad-pearl: linear-gradient(135deg, #FBFBFE 0%, #F1F5F9 100%);
+  --grad-hero: linear-gradient(135deg, #F9F7F2 0%, #FFFFFF 100%);
+  --grad-primary: linear-gradient(135deg, #111827 0%, #1F2937 100%);
+  --grad-accent: linear-gradient(135deg, #C5A034 0%, #A38428 100%);
 
   /* Shadows */
-  --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
-  --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.04), 0 4px 6px -2px rgba(0, 0, 0, 0.02);
-  --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 10px 10px -5px rgba(0, 0, 0, 0.02);
-  --shadow-primary: 0 10px 20px -5px rgba(79, 70, 229, 0.2);
-  --shadow-gold: 0 10px 20px -5px rgba(197, 160, 89, 0.3);
+  --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.02);
+  --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.03);
+  --shadow-lg: 0 25px 50px -12px rgba(0, 0, 0, 0.05);
 
   /* Typography */
-  --font-display: 'Playfair Display', Georgia, serif;
+  --font-display: 'Playfair Display', serif;
   --font-body: 'Inter', system-ui, sans-serif;
 
   /* Spacing */
@@ -107,6 +103,21 @@ img, video {
   display: block;
 }
 
+/* Background Grain Overlay */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  background: url("https://grainy-gradients.vercel.app/noise.svg");
+  opacity: 0.15;
+  z-index: 999999;
+  mix-blend-mode: overlay;
+}
+
 a {
   text-decoration: none;
   color: inherit;
@@ -139,10 +150,16 @@ h1, h2, h3, h4, h5 {
 .caption { font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 700; color: var(--brand-primary); }
 
 .gradient-text {
-  background: var(--grad-primary);
+  background: var(--grad-accent);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+}
+
+.text-italic-gold {
+  color: var(--brand-secondary);
+  font-style: italic;
+  font-family: var(--font-display);
 }
 
 /* ============ LAYOUT ============ */
@@ -150,7 +167,13 @@ h1, h2, h3, h4, h5 {
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 var(--space-md);
+  padding: 0 var(--space-lg);
+}
+
+@media (max-width: 640px) {
+  .container {
+    padding: 0 var(--space-md);
+  }
 }
 
 .section {
@@ -284,19 +307,37 @@ h1, h2, h3, h4, h5 {
 }
 
 /* ============ ANIMATIONS ============ */
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
 @keyframes floatY {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-8px); }
+}
+
+/* Premium Reveal System */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px) rotateX(10deg);
+  transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+  perspective: 1000px;
+  will-change: transform, opacity;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0) rotateX(0deg);
+}
+
+/* Card 3D Setup */
+.perspective-3d {
+  perspective: 2000px;
+}
+
+.tilt-effect {
+  transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+  transform-style: preserve-3d;
+}
+
+.tilt-effect:hover {
+  transform: rotateX(2deg) rotateY(2deg) translateZ(10px);
 }
 
 .animate-fadeUp { animation: fadeUp 0.6s ease both; }
@@ -339,6 +380,19 @@ h1, h2, h3, h4, h5 {
 .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-lg); }
 .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-lg); }
 .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-md); }
+
+@media (max-width: 1024px) {
+  .grid-4 { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (max-width: 768px) {
+  .grid-3, .grid-4 { grid-template-columns: repeat(2, 1fr); }
+  .grid-2 { gap: var(--space-md); }
+}
+
+@media (max-width: 480px) {
+  .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+}
 
 .mt-sm { margin-top: var(--space-sm); }
 .mt-md { margin-top: var(--space-md); }

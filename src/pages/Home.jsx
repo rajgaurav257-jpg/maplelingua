@@ -1,19 +1,30 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { 
   FiTarget, 
   FiMic, 
   FiSmartphone, 
   FiAward, 
-  FiCheckCircle, 
   FiUnlock, 
   FiArrowRight,
   FiZap,
   FiBookOpen,
   FiStar,
-  FiMail
+  FiMail,
+  FiPlay,
+  FiUsers,
+  FiBook,
+  FiCheckCircle,
+  FiGlobe,
+  FiSend,
+  FiAlertCircle
 } from 'react-icons/fi';
 import { HiOutlineLightBulb, HiOutlineGlobeAlt, HiOutlineChartBar } from 'react-icons/hi';
+import heroImg from '../assets/hero-premium.jpg';
+import { useReveal } from '../hooks/useReveal';
 import './Home.css';
+
+const GOOGLE_SCRIPT_URL = 'https://script.google.com/a/macros/mangotreetech.com/s/AKfycbyV7hsl31NUWl7mL8zFAnbUjSV-xlUtS00XUmEjfsU0Ji_JgzmfQA3fb_bnDQmVwQEOFQ/exec';
 
 const features = [
   {
@@ -149,103 +160,113 @@ const frenchPrograms = [
 ];
 
 export default function Home() {
+  useReveal();
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    message: '',
+  });
+  const [status, setStatus] = useState('idle'); // idle | loading | success | error
+
+  const handleChange = e => {
+    setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
+  };
+
+  const handleSubmit = async e => {
+    e.preventDefault();
+    setStatus('loading');
+
+    try {
+      const body = new URLSearchParams({
+        ...formData,
+        timestamp: new Date().toISOString(),
+      });
+
+      await fetch(GOOGLE_SCRIPT_URL, {
+        method: 'POST',
+        body,
+        mode: 'no-cors',
+      });
+
+      setStatus('success');
+      setFormData({ name: '', email: '', phone: '', message: '' });
+    } catch (err) {
+      console.error(err);
+      setStatus('error');
+    }
+  };
+
   return (
     <main className="home">
       {/* ===== HERO ===== */}
       <section className="hero" id="hero">
-        {/* Decorative orbs */}
-        <div className="hero__orb hero__orb--1" />
-        <div className="hero__orb hero__orb--2" />
-        <div className="hero__orb hero__orb--3" />
-
         <div className="container hero__content">
-          <div className="hero__text animate-fadeUp">
-            <div className="badge badge-gold mb-md">
-              <HiOutlineGlobeAlt /> Premier French Learning Platform
+          {/* Left Side: Information */}
+          <div className="hero__info animate-fadeUp">
+            <div className="badge-luxury mb-sm">
+              <span className="dot-gold"></span> WORLD-CLASS EDUCATION
             </div>
-            <h1 className="display-1 hero__heading" style={{ color: 'var(--slate-900)' }}>
-              Speak French with
-              <br />
-              <em className="gradient-text">Confidence & Grace</em>
+            <h1 className="display-1 hero__heading mb-md">
+              Master a New <br />
+              Language with <br />
+              <span className="text-italic-gold">Confidence.</span>
             </h1>
-            <p className="lead hero__subtext">
-              MapleLingua blends world-class pedagogy with immersive French culture — giving you the language, the accent, and the elegance to truly <em>belong</em> in the French-speaking world.
+            <p className="lead hero__subtext mb-xl">
+              Experience bespoke language training designed for the global elite. Our certified expert tutors provide personalized learning paths that guarantee fluency and cultural mastery.
             </p>
-            <div className="hero__actions">
-              <Link to="/contact" className="btn btn-primary btn-lg" id="hero-cta-primary">
-                <FiZap /> Start Free Today
+
+            <div className="hero__actions mb-xl">
+              <Link to="/contact" className="btn btn-primary btn-lg shine-effect" id="hero-cta-main">
+                Start Your Journey
               </Link>
-              <Link to="/about" className="btn btn-outline btn-lg" id="hero-cta-secondary">
-                Discover Our Story
-              </Link>
+              <button className="btn-play-link" id="hero-cta-video">
+                <div className="play-icon-wrap"><FiPlay /></div>
+                <span className="play-text">WATCH STORY</span>
+              </button>
             </div>
 
-            {/* Trust stamps */}
             <div className="hero__trust">
-              <div className="trust-item">
-                <div className="trust-stars">
-                  <FiStar /><FiStar /><FiStar /><FiStar /><FiStar />
-                </div>
-                <span>4.9 / 5 from 2,400+ reviews</span>
+              <div className="avatar-group">
+                <div className="avatar"><span>S</span></div>
+                <div className="avatar"><span>J</span></div>
+                <div className="avatar"><span>A</span></div>
               </div>
-              <span className="trust-divider">|</span>
-              <div className="trust-item"><FiUnlock /> No credit card required</div>
-              <span className="trust-divider">|</span>
-              <div className="trust-item"><FiCheckCircle /> Free 14-day trial</div>
-            </div>
-          </div>
-
-          {/* Hero Card */}
-          <div className="hero__card animate-fadeUp delay-300">
-            <div className="hero-card">
-              <div className="hero-card__header">
-                <div className="hero-card__flag">
-                  <img src="https://flagcdn.com/w80/fr.png" alt="French Flag" style={{ width: '32px', borderRadius: '4px' }} />
-                </div>
-                <div>
-                  <div className="hero-card__label">Today's Lesson</div>
-                  <div className="hero-card__title">Les Salutations</div>
-                </div>
-                <span className="badge badge-gold">A1</span>
-              </div>
-              <div className="hero-card__phrase">
-                <div className="phrase-row">
-                  <span className="phrase-fr">Bonjour !</span>
-                  <span className="phrase-en">Good morning!</span>
-                </div>
-                <div className="phrase-row">
-                  <span className="phrase-fr">Comment allez-vous ?</span>
-                  <span className="phrase-en">How are you?</span>
-                </div>
-                <div className="phrase-row">
-                  <span className="phrase-fr">Enchanté(e) !</span>
-                  <span className="phrase-en">Pleased to meet you!</span>
-                </div>
-                <div className="phrase-row">
-                  <span className="phrase-fr">Au revoir !</span>
-                  <span className="phrase-en">Goodbye!</span>
-                </div>
-              </div>
-              <div className="hero-card__progress">
-                <span>Lesson Progress</span>
-                <span>78%</span>
-              </div>
-              <div className="hero-card__bar">
-                <div className="hero-card__bar-fill" style={{ width: '78%' }} />
-              </div>
-              <div className="hero-card__stats">
-                <div className="hc-stat"><FiZap className="text-gold" /> 12-day streak</div>
-                <div className="hc-stat"><FiBookOpen className="text-indigo" /> 48 words learned</div>
-                <div className="hc-stat"><FiStar className="text-gold" /> 320 XP</div>
+              <div className="trust-info">
+                <p className="trust-title">500+ Expert Tutors</p>
+                <p className="trust-subtitle">Helping 20,000+ students globally</p>
               </div>
             </div>
           </div>
-        </div>
 
-        {/* Scroll hint */}
-        <div className="hero__scroll">
-          <span>Scroll to explore</span>
-          <div className="scroll-mouse"><div className="scroll-dot" /></div>
+          {/* Right Side: Visual Card */}
+          <div className="hero__visual animate-fadeIn perspective-3d">
+            <div className="hero-card-v2 tilt-effect">
+              <div className="fluency-badge-v2">
+                <span className="fb-num">98%</span>
+                <span className="fb-text">FLUENCY RATE</span>
+              </div>
+              
+              <div className="hc-img-wrap">
+                <img 
+                  src={heroImg} 
+                  alt="Language learners collaboration" 
+                  className="hc-main-img" 
+                />
+              </div>
+
+              <div className="hc-testimonial-v2">
+                <div className="testimonial__meta">
+                  <span className="tm-label">LIVE SESSION</span>
+                  <span className="tm-now"><span className="dot-red"></span> NOW</span>
+                </div>
+                <p className="tm-quote">
+                  "The most effective way to learn. My tutor was exceptional at tailoring sessions to my business needs."
+                </p>
+                <p className="tm-author">— Julian V., CEO at FinTech Global</p>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -263,17 +284,72 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ===== FRENCH EXCELLENCE HUB (Refined for Students) ===== */}
+      <section className="hub-section reveal" id="excellence-hub">
+        <div className="container">
+          <div className="hub-header text-center mb-xl">
+            <p className="badge-luxury mb-sm" style={{ background: 'rgba(197, 160, 52, 0.08)', color: 'var(--brand-secondary)' }}>
+              STUDENT EXCELLENCE CENTER
+            </p>
+            <h2 className="display-2 mb-md">Dedicated Space for French Students</h2>
+            <p className="lead mx-auto" style={{ maxWidth: '600px', color: 'var(--slate-600)' }}>
+              Empowering the next generation of French speakers. Whether you're a high-schooler aiming for excellence or a university student targeting specialized certifications.
+            </p>
+          </div>
+
+          <div className="hub-grid perspective-3d">
+            {/* Pathway 1: Academic Achievement */}
+            <div className="hub-card hub-card--academic animate-fadeUp tilt-effect">
+              <div className="hub-card__icon-wrap">
+                <FiBook className="hub-icon" />
+              </div>
+              <div className="hub-card__content">
+                <h3 className="heading-2 mb-sm">Academic Achievement</h3>
+                <p className="body-lg text-secondary mb-lg">
+                  Master the curriculum with precision. We provide targeted support for DELF/DALF exams, academic literature, and essay writing excellence.
+                </p>
+                <ul className="hub-list mb-xl">
+                  <li><FiCheckCircle className="text-gold" /> Exam-Focused Intensive Training</li>
+                  <li><FiCheckCircle className="text-gold" /> Academic Writing & Grammar</li>
+                  <li><FiCheckCircle className="text-gold" /> Literature & Cultural Analysis</li>
+                </ul>
+                <Link to="/contact" className="btn btn-primary">Elite Academic Path</Link>
+              </div>
+            </div>
+
+            {/* Pathway 2: Professional Excellence */}
+            <div className="hub-card hub-card--professional animate-fadeUp delay-200 tilt-effect">
+              <div className="hub-card__icon-wrap">
+                <FiAward className="hub-icon" />
+              </div>
+              <div className="hub-card__content">
+                <h3 className="heading-2 mb-sm">Professional Excellence</h3>
+                <p className="body-lg text-secondary mb-lg">
+                  Accelerate your career in the Francophone world. Specialized vocabulary for business, law, and diplomacy designed for ambitious students.
+                </p>
+                <ul className="hub-list mb-xl">
+                  <li><FiUnlock className="text-gold" /> Career-Centered Vocabulary</li>
+                  <li><FiUnlock className="text-gold" /> Business Etiquette & Networking</li>
+                  <li><FiUnlock className="text-gold" /> Global Internship Preparation</li>
+                </ul>
+                <Link to="/contact" className="btn btn-outline">Professional Student Path</Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* ===== LEVELS ===== */}
-      <section className="section" id="levels">
+      <section className="section reveal" id="levels">
         <div className="container text-center">
           <p className="section-label">Find Your Level</p>
           <h2 className="heading-1 mb-md">Courses for Every Stage</h2>
           <p className="lead text-secondary mb-xl" style={{ maxWidth: 600, margin: '0 auto var(--space-xl)' }}>
             Whether you're saying "bonjour" for the first time or polishing your Parisian accent, we have a path for you.
           </p>
-          <div className="grid-3">
+          <div className="grid-3 perspective-3d">
             {levels.map((l, i) => (
-              <div className="level-card card" key={i} id={`level-card-${i}`}>
+              <div className="level-card card tilt-effect" key={i} id={`level-card-${i}`}>
                 <div className="level-badge" style={{ background: l.color }}>{l.level}</div>
                 <h3 className="heading-2 mt-md">{l.name}</h3>
                 <p className="text-secondary mt-sm">{l.desc}</p>
@@ -287,15 +363,15 @@ export default function Home() {
       </section>
 
       {/* ===== FRENCH PROGRAMS ===== */}
-      <section className="section" id="programs">
+      <section className="section reveal" id="programs">
         <div className="container">
           <div className="text-center mb-xl">
             <p className="section-label">French Language Programs</p>
             <h2 className="heading-1">Our Learning Path</h2>
           </div>
-          <div className="program-grid">
+          <div className="program-grid perspective-3d">
             {frenchPrograms.map((p, i) => (
-              <div className="program-card" key={i}>
+              <div className="program-card tilt-effect" key={i}>
                 <span className="program-badge">{p.badge}</span>
                 <h3>{p.title}</h3>
                 <p>{p.desc}</p>
@@ -319,15 +395,15 @@ export default function Home() {
       </section>
 
       {/* ===== FEATURES ===== */}
-      <section className="section features-section" id="features">
+      <section className="section features-section reveal" id="features">
         <div className="container">
           <div className="text-center mb-xl">
             <p className="section-label">Why MapleLingua</p>
             <h2 className="heading-1">Everything You Need to Become Fluent</h2>
           </div>
-          <div className="grid-3 features-grid">
+          <div className="grid-3 features-grid perspective-3d">
             {features.map((f, i) => (
-              <div className="feature-card" key={i} id={`feature-${i}`}>
+              <div className="feature-card tilt-effect" key={i} id={`feature-${i}`}>
                 <div className="feature-icon" style={{ color: 'var(--brand-primary)' }}>{f.icon}</div>
                 <h3 className="heading-3 mt-md">{f.title}</h3>
                 <p className="text-secondary mt-sm body-lg">{f.desc}</p>
@@ -338,7 +414,7 @@ export default function Home() {
       </section>
 
       {/* ===== HOW IT WORKS ===== */}
-      <section className="section how-section" id="how-it-works">
+      <section className="section how-section reveal" id="how-it-works">
         <div className="container">
           <div className="how-grid">
             <div className="how-text">
@@ -367,28 +443,62 @@ export default function Home() {
               </Link>
             </div>
             <div className="how-visual">
-              <div className="visual-card animate-float">
-                <div className="vc-top">
-                  <HiOutlineGlobeAlt className="vc-flag text-gold" />
-                  <span className="vc-title">Weekly Summary</span>
+              <div className="visual-card-v3 animate-float">
+                <div className="v3-card__header">
+                  <div className="v3-card__user">
+                    <div className="v3-avatar"><span>JD</span></div>
+                    <div>
+                      <p className="v3-user-name">Julian De Ville</p>
+                      <p className="v3-user-status"><span className="dot-gold"></span> ACTIVE NOW</p>
+                    </div>
+                  </div>
+                  <div className="v3-level-badge">B2 LEVEL</div>
                 </div>
-                <div className="vc-bars">
-                  {['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'].map((d, i) => {
-                    const heights = [60, 85, 45, 90, 70, 55, 80];
-                    return (
-                      <div className="vc-bar-wrap" key={d}>
-                        <div
-                          className="vc-bar"
-                          style={{ height: `${heights[i]}%`, opacity: i === 3 ? 1 : 0.6 }}
-                        />
-                        <span className="vc-day">{d}</span>
-                      </div>
-                    );
-                  })}
+
+                <div className="v3-card__main">
+                  <div className="v3-progress-ring">
+                    <div className="v3-ring-content">
+                      <span className="v3-percent">84%</span>
+                      <span className="v3-label">FLUENCY</span>
+                    </div>
+                  </div>
+                  <div className="v3-main-info">
+                    <p className="v3-main-title">Path to Mastery</p>
+                    <p className="v3-main-desc">You're in the top 5% of learners this month. Keep it up!</p>
+                  </div>
                 </div>
-                <div className="vc-footer">
-                  <span>🏆 Best week yet!</span>
-                  <span className="text-gold">+24% progress</span>
+
+                <div className="v3-stats-grid">
+                  <div className="v3-stat-box">
+                    <FiMic className="v3-stat-icon" />
+                    <div>
+                      <p className="v3-stat-val">42h</p>
+                      <p className="v3-stat-label">Speaking</p>
+                    </div>
+                  </div>
+                  <div className="v3-stat-box">
+                    <FiBookOpen className="v3-stat-icon" />
+                    <div>
+                      <p className="v3-stat-val">1.2k</p>
+                      <p className="v3-stat-label">Words</p>
+                    </div>
+                  </div>
+                  <div className="v3-stat-box">
+                    <FiAward className="v3-stat-icon" />
+                    <div>
+                      <p className="v3-stat-val">12</p>
+                      <p className="v3-stat-label">Badges</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="v3-footer">
+                   <div className="v3-badge-certified">
+                     <FiCheckCircle /> CERTIFIED PROGRESS
+                   </div>
+                   <div className="v3-xp-bar">
+                     <div className="v3-xp-fill" style={{ width: '70%' }}></div>
+                   </div>
                 </div>
               </div>
             </div>
@@ -397,15 +507,15 @@ export default function Home() {
       </section>
 
       {/* ===== TESTIMONIALS ===== */}
-      <section className="section testimonials-section" id="testimonials">
+      <section className="section testimonials-section reveal" id="testimonials">
         <div className="container">
           <div className="text-center mb-xl">
             <p className="section-label">What Learners Say</p>
             <h2 className="heading-1">Stories of Real Transformation</h2>
           </div>
-          <div className="grid-3">
+          <div className="grid-3 perspective-3d">
             {testimonials.map((t, i) => (
-              <div className="testimonial-card" key={i} id={`testimonial-${i}`}>
+              <div className="testimonial-card tilt-effect" key={i} id={`testimonial-${i}`}>
                 <div className="testi-quote" style={{ opacity: 0.05 }}>"</div>
                 <p className="testi-text">"{t.text}"</p>
                 <div className="testi-rating">
@@ -424,8 +534,111 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ===== HOME CONTACT SECTION ===== */}
+      <section className="home-contact-section reveal" id="home-contact">
+        <div className="container">
+          <div className="home-contact-grid">
+            <div className="hc-info-side">
+              <p className="badge-luxury mb-sm">CONNECT WITH EXCELLENCE</p>
+              <h2 className="display-2 mb-md">Have Questions? <br />Let's <span className="gradient-text">Talk.</span></h2>
+              <p className="lead mb-xl">
+                Ready to begin your journey or need more details? Our elite team of advisors is here to guide you toward the perfect learning path.
+              </p>
+              
+              <div className="hc-features">
+                <div className="hc-feat-item">
+                  <div className="hc-feat-icon"><FiMail /></div>
+                  <div className="hc-feat-text">
+                    <strong>Elite Support</strong>
+                    <p>hello@maplelingua.ca</p>
+                  </div>
+                </div>
+                <div className="hc-feat-item">
+                  <div className="hc-feat-icon"><FiGlobe /></div>
+                  <div className="hc-feat-text">
+                    <strong>Global Access</strong>
+                    <p>Learning from 20+ Countries</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="hc-form-side">
+              <div className="hc-form-card">
+                {status === 'success' ? (
+                  <div className="hc-form-success">
+                    <FiCheckCircle className="success-icon" />
+                    <h3>Bientôt en Contact!</h3>
+                    <p>Merci! We've received your message and will reach out within 24 hours.</p>
+                    <button className="btn btn-primary mt-md" onClick={() => setStatus('idle')}>Send Another</button>
+                  </div>
+                ) : (
+                  <form className="hc-form" onSubmit={handleSubmit}>
+                    <div className="hc-form-group">
+                      <label htmlFor="hc-name">Full Name</label>
+                      <input 
+                        type="text" 
+                        id="hc-name" 
+                        name="name" 
+                        placeholder="Jean Dupont" 
+                        value={formData.name} 
+                        onChange={handleChange}
+                        required 
+                      />
+                    </div>
+                    <div className="hc-form-group">
+                      <label htmlFor="hc-email">Email Address</label>
+                      <input 
+                        type="email" 
+                        id="hc-email" 
+                        name="email" 
+                        placeholder="jean@example.com" 
+                        value={formData.email} 
+                        onChange={handleChange}
+                        required 
+                      />
+                    </div>
+                    <div className="hc-form-group">
+                      <label htmlFor="hc-phone">Phone Number</label>
+                      <input 
+                        type="tel" 
+                        id="hc-phone" 
+                        name="phone" 
+                        placeholder="+33 1 23 45 67 89" 
+                        value={formData.phone} 
+                        onChange={handleChange}
+                      />
+                    </div>
+                    <div className="hc-form-group">
+                      <label htmlFor="hc-message">Your Message</label>
+                      <textarea 
+                        id="hc-message" 
+                        name="message" 
+                        placeholder="How can we help you master French?" 
+                        rows="4" 
+                        value={formData.message} 
+                        onChange={handleChange}
+                        required
+                      ></textarea>
+                    </div>
+
+                    {status === 'error' && (
+                      <p className="hc-form-error"><FiAlertCircle /> Failed to send. Please try again.</p>
+                    )}
+
+                    <button type="submit" className="btn btn-primary btn-lg" disabled={status === 'loading'}>
+                      {status === 'loading' ? 'Sending...' : 'Connect Now'} <FiSend />
+                    </button>
+                  </form>
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* ===== CTA BANNER ===== */}
-      <section className="cta-banner" id="cta-banner">
+      <section className="cta-banner reveal" id="cta-banner">
         <div className="container text-center">
           <p className="section-label" style={{ color: 'var(--brand-secondary)', display: 'flex', justifyContent: 'center' }}>
             <FiZap /> Limited Time Access

@@ -1,0 +1,61 @@
+.globe-preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #000;
+  z-index: 10001;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transition: opacity 1s ease-out, transform 1s cubic-bezier(1, 0, 0, 1);
+}
+
+.globe-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at center, transparent 30%, rgba(0,0,0,0.6) 100%),
+              radial-gradient(circle at center, rgba(173, 216, 230, 0.05) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.location-ping {
+  position: absolute;
+  bottom: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+  text-align: center;
+}
+
+.ping-text {
+  font-family: var(--font-body);
+  color: white;
+  letter-spacing: 0.3em;
+  font-size: 0.7rem;
+  font-weight: 300;
+  opacity: 0.6;
+  animation: pulse-ping 2s infinite ease-in-out;
+}
+
+@keyframes pulse-ping {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.8; }
+}
+
+/* Transition to Stage 2 Effect */
+.globe-preloader.zooming {
+  background: white; /* Flash to white as we zoom in deep */
+}
+
+/* Ensure the canvas fills parent */
+.globe-preloader .scene-container {
+  width: 100% !important;
+  height: 100% !important;
+}

@@ -1,0 +1,113 @@
+.preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #FAF8F4; /* Ultra light champagne */
+  z-index: 99999; /* Ensure it stays above everything */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 1s ease-in-out;
+  overflow: hidden;
+}
+
+.preloader--exit {
+  transform: translateY(-100%);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.preloader__inner {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem;
+}
+
+.merger-container {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: visible;
+}
+
+.merger-word {
+  font-family: var(--font-body);
+  font-size: clamp(2.5rem, 8vw, 5rem);
+  font-weight: 900;
+  color: var(--slate-900);
+  letter-spacing: 0.5em; /* Start airy */
+  position: absolute;
+  transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+  white-space: nowrap;
+}
+
+.merger-word.maple {
+  right: 50%;
+  transform: translateX(-150%);
+  opacity: 0;
+}
+
+.merger-word.lingua {
+  left: 50%;
+  transform: translateX(150%);
+  opacity: 0;
+}
+
+/* Merged State */
+.merger-container.merged .merger-word {
+  opacity: 1;
+  letter-spacing: -0.02em; /* Snap to tight premium kerning */
+}
+
+.merger-container.merged .merger-word.maple {
+  transform: translateX(0); /* Converge */
+}
+
+.merger-container.merged .merger-word.lingua {
+  transform: translateX(0); /* Converge */
+  color: var(--brand-secondary); /* Turn Gold */
+}
+
+/* The Shimmer Effect */
+.merger-container::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -150%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.8),
+    transparent
+  );
+  transform: skewX(-20deg);
+  z-index: 10;
+  pointer-events: none;
+}
+
+.merger-container.merged::after {
+  animation: shine-sweep 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  animation-delay: 1s; /* Trigger as they meet */
+}
+
+@keyframes shine-sweep {
+  0% { left: -150%; }
+  100% { left: 250%; }
+}
+
+@media (max-width: 768px) {
+  .merger-word { font-size: 3rem; }
+}

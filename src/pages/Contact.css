@@ -137,6 +137,12 @@
   box-shadow: var(--shadow-lg);
 }
 
+@media (max-width: 640px) {
+  .contact-form-card { padding: 2rem 1.5rem; }
+  .info-card { padding: 1rem; }
+  .social-chip { padding: 0.4rem 1rem; font-size: 0.8rem; }
+}
+
 .form-group {
   margin-bottom: 1.5rem;
 }
