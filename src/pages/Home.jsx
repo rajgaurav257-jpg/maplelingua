@@ -238,22 +238,24 @@ export default function Home() {
                 <p className="trust-subtitle">Helping 20,000+ students globally</p>
               </div>
             </div>
+          </div>
 
+          <div className="hero__middle animate-fadeUp delay-200">
             <div className="hero__search mt-xl">
-              <div className="search-box-wrapper" style={{ display: 'flex', gap: '1rem', maxWidth: '400px', marginBottom: '1.5rem' }}>
-                <input type="text" placeholder="What do you want to learn today?" className="form-control" style={{ flex: 1, padding: '1rem 1.5rem', borderRadius: '50px', border: '1px solid var(--slate-200)', outline: 'none' }} />
-                <button className="btn btn-primary" style={{ borderRadius: '50px', padding: '0 1.5rem' }}><FiTarget /></button>
+              <div className="search-box-wrapper">
+                <input type="text" placeholder="What do you want to learn today?" className="form-control" />
+                <button className="btn btn-primary"><FiTarget /></button>
               </div>
-              <ul className="hero__features-list" style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.75rem', color: 'var(--slate-600)', fontWeight: 500 }}>
-                <li style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}><FiCheckCircle className="text-gold" /> Native French Tutors</li>
-                <li style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}><FiCheckCircle className="text-gold" /> CEFR Aligned Curriculum</li>
-                <li style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}><FiCheckCircle className="text-gold" /> Flexible Scheduling</li>
+              <ul className="hero__features-list">
+                <li><FiCheckCircle className="text-gold" /> Native French Tutors</li>
+                <li><FiCheckCircle className="text-gold" /> CEFR Aligned Curriculum</li>
+                <li><FiCheckCircle className="text-gold" /> Flexible Scheduling</li>
               </ul>
             </div>
           </div>
 
           {/* Right Side: Visual Card (3D Globe) */}
-          <div className="hero__visual perspective-3d" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%', aspectRatio: '1/1', maxWidth: '600px', margin: '0 auto', transform: 'translateY(-14rem)' }}>
+          <div className="hero__visual perspective-3d">
             {/* Globe spins freely with no background container */}
             <GlobePreloader heroMode={true} />
           </div>
