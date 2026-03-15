@@ -1,4 +1,15 @@
 import { Link } from 'react-router-dom';
+import { 
+  FiMic, 
+  FiCoffee, 
+  FiZap, 
+  FiStar, 
+  FiBook, 
+  FiEdit3, 
+  FiClock,
+  FiMail
+} from 'react-icons/fi';
+import { HiOutlineLightBulb } from 'react-icons/hi';
 import './Blog.css';
 
 const posts = [
@@ -10,6 +21,7 @@ const posts = [
     title: 'Why French Pronunciation Feels So Hard — and How to Finally Crack It',
     excerpt: 'The French "r", the silent letters, the liaisons — it all feels impossible at first. But here\'s the secret: French pronunciation follows extremely logical, predictable rules once you understand the system.',
     tag: '🎙️ Pronunciation',
+    icon: <FiMic />,
     gradient: 'linear-gradient(135deg, #0055A4 0%, #0D1B2A 100%)',
     author: 'Sophie Beaumont',
     authorInitials: 'SB',
@@ -22,6 +34,7 @@ const posts = [
     title: '10 Things You Must Know About French Café Culture (That No Textbook Teaches)',
     excerpt: 'Ordering a "café" at a Parisian brasserie is an art form. From the correct way to ask for l\'addition to the unspoken rules of sitting at a terrasse — this is French culture that will make you belong.',
     tag: '☕ Culture',
+    icon: <FiCoffee />,
     gradient: 'linear-gradient(135deg, #C9A84C 0%, #A8872A 100%)',
     author: 'Claire Dubois',
     authorInitials: 'CD',
@@ -34,6 +47,7 @@ const posts = [
     title: 'The Science of Language Acquisition: How Your Brain Actually Learns French',
     excerpt: 'Forget rote memorization. Modern neuroscience shows us that the brain learns languages through patterns, stories, and emotional associations — not grammar drills. Here\'s what the research says.',
     tag: '🧠 Science',
+    icon: <HiOutlineLightBulb />,
     gradient: 'linear-gradient(135deg, #9C27B0 0%, #4a0080 100%)',
     author: 'Riya Kapoor',
     authorInitials: 'RK',
@@ -46,6 +60,7 @@ const posts = [
     title: 'From Zero to DELF B2: Priya\'s 8-Month MapleLingua Journey',
     excerpt: 'Priya Sharma had never studied French when she joined MapleLingua. Eight months later, she passed the DELF B2 exam on her first attempt. This is her story, in her own words.',
     tag: '⭐ Story',
+    icon: <FiStar />,
     gradient: 'linear-gradient(135deg, #EF4135 0%, #8B0000 100%)',
     author: 'Arjun Mehta',
     authorInitials: 'AM',
@@ -58,6 +73,7 @@ const posts = [
     title: '50 Essential French Phrases Every Learner Should Know by Week 4',
     excerpt: 'These are the 50 phrases that our data shows the highest-performing learners master in their first month. From polite requests to emergency phrases — these will serve you everywhere in the Francophone world.',
     tag: '📚 Vocabulary',
+    icon: <FiBook />,
     gradient: 'linear-gradient(135deg, #2E7D32 0%, #0a3d0a 100%)',
     author: 'Sophie Beaumont',
     authorInitials: 'SB',
@@ -70,6 +86,7 @@ const posts = [
     title: 'The Three French Verb Tenses That Will Handle 90% of Your Conversations',
     excerpt: 'French has 17 tenses — but here\'s the truth: three of them handle virtually every real-world conversation. Master le présent, le passé composé, and le futur proche, and you\'ll be unstoppable.',
     tag: '✏️ Grammar',
+    icon: <FiEdit3 />,
     gradient: 'linear-gradient(135deg, #1565C0 0%, #062b6e 100%)',
     author: 'Claire Dubois',
     authorInitials: 'CD',
@@ -86,12 +103,12 @@ export default function Blog() {
         <div className="page-hero__orb page-hero__orb--1" />
         <div className="page-hero__orb page-hero__orb--2" />
         <div className="container text-center" style={{ position: 'relative', zIndex: 1 }}>
-          <div className="badge badge-gold mb-md" style={{ display: 'inline-flex' }}>Our Blog</div>
-          <h1 className="display-2 text-white mb-md">
+          <div className="badge badge-gold mb-md" style={{ display: 'inline-flex' }}><FiZap /> Our Blog</div>
+          <h1 className="display-2 mb-md" style={{ color: 'var(--slate-900)' }}>
             Insights, Stories &amp; <br />
             <span className="gradient-text">French Wisdom</span>
           </h1>
-          <p className="lead" style={{ color: 'rgba(255,255,255,0.7)', maxWidth: 560, margin: '0 auto' }}>
+          <p className="lead" style={{ color: 'var(--slate-600)', maxWidth: 560, margin: '0 auto' }}>
             Deep-dive into French language learning, culture, science, and the stories of learners who transformed their lives through the power of French.
           </p>
         </div>
@@ -115,13 +132,13 @@ export default function Blog() {
         <div className="container">
           {/* Featured Post */}
           <div className="blog-featured" id="blog-featured">
-            <div className="featured-image" style={{ background: posts[0].gradient }}>
-              <span className="featured-emoji">🎙️</span>
+            <div className="featured-image" style={{ background: posts[0].gradient, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '4rem', color: 'rgba(255,255,255,0.2)' }}>
+              <FiMic />
             </div>
             <div className="featured-content">
               <div className="flex gap-sm mb-sm" style={{ flexWrap: 'wrap' }}>
                 <span className="badge badge-gold">{posts[0].category}</span>
-                <span className="badge badge-navy" style={{background:'rgba(13,27,42,0.06)'}}>{posts[0].readTime}</span>
+                <span className="badge badge-navy" style={{background:'rgba(13,27,42,0.06)'}}><FiClock /> {posts[0].readTime}</span>
               </div>
               <h2 className="heading-1 mb-md">{posts[0].title}</h2>
               <p className="body-lg text-secondary mb-lg">{posts[0].excerpt}</p>
@@ -132,7 +149,7 @@ export default function Blog() {
                 </div>
                 <span className="text-muted body-sm">{posts[0].date}</span>
               </div>
-              <Link to="/blog" className="btn btn-primary" id="featured-read-more">Read Full Article →</Link>
+              <Link to="/blog" className="btn btn-primary" id="featured-read-more">Read Full Article <FiZap /></Link>
             </div>
           </div>
 
@@ -140,13 +157,16 @@ export default function Blog() {
           <div className="blog-grid mt-xl">
             {posts.slice(1).map((post, i) => (
               <article className="blog-card card" key={post.id} id={`blog-post-${post.id}`}>
-                <div className="blog-card__img" style={{ background: post.gradient }}>
-                  <span className="blog-card__tag">{post.tag}</span>
+                <div className="blog-card__img" style={{ background: post.gradient, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '3rem', color: 'rgba(255,255,255,0.15)' }}>
+                  <span className="blog-card__tag" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                    {post.icon} {post.category}
+                  </span>
+                  {post.icon}
                 </div>
                 <div className="blog-card__body">
                   <div className="flex gap-sm mb-sm" style={{ flexWrap: 'wrap', marginBottom: '0.75rem' }}>
                     <span className="badge badge-gold">{post.category}</span>
-                    <span className="body-sm text-muted">{post.readTime}</span>
+                    <span className="body-sm text-muted"><FiClock /> {post.readTime}</span>
                   </div>
                   <h3 className="heading-3 blog-card__title">{post.title}</h3>
                   <p className="body-sm text-secondary mt-sm blog-card__excerpt">{post.excerpt}</p>
@@ -157,7 +177,7 @@ export default function Blog() {
                     </div>
                     <span className="body-sm text-muted">{post.date}</span>
                   </div>
-                  <Link to="/blog" className="blog-card__link" id={`blog-read-${post.id}`}>Read More →</Link>
+                  <Link to="/blog" className="blog-card__link" id={`blog-read-${post.id}`}>Read More <FiZap /></Link>
                 </div>
               </article>
             ))}
@@ -173,9 +193,11 @@ export default function Blog() {
       {/* Newsletter */}
       <section className="blog-newsletter">
         <div className="container text-center">
-          <p className="section-label" style={{ color: 'var(--gold-400)', display: 'flex', justifyContent: 'center' }}>Stay Informed</p>
-          <h2 className="heading-1 text-white mb-sm">Get French Tips in Your Inbox</h2>
-          <p className="lead mb-lg" style={{ color: 'rgba(255,255,255,0.6)', maxWidth: 480, margin: '0 auto var(--space-lg)' }}>
+          <p className="section-label" style={{ color: 'var(--brand-secondary)', display: 'flex', justifyContent: 'center' }}>
+            <FiMail /> Stay Informed
+          </p>
+          <h2 className="heading-1 mb-sm" style={{ color: 'var(--slate-900)' }}>Get French Tips in Your Inbox</h2>
+          <p className="lead mb-lg" style={{ color: 'var(--slate-600)', maxWidth: 480, margin: '0 auto var(--space-lg)' }}>
             Join 8,000+ subscribers who receive our weekly French language tips, cultural insights, and learning strategies.
           </p>
           <form className="newsletter-form" id="newsletter-form" onSubmit={e => e.preventDefault()}>
@@ -188,7 +210,7 @@ export default function Blog() {
             />
             <button type="submit" className="btn btn-primary" id="newsletter-submit">Subscribe Free</button>
           </form>
-          <p className="body-sm mt-sm" style={{ color: 'rgba(255,255,255,0.3)' }}>No spam, ever. Unsubscribe anytime.</p>
+          <p className="body-sm mt-sm" style={{ color: 'var(--slate-400)' }}>No spam, ever. Unsubscribe anytime.</p>
         </div>
       </section>
     </main>

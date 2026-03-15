@@ -1,21 +1,26 @@
 import { useState } from 'react';
+import { 
+  FiMapPin, 
+  FiMail, 
+  FiPhone, 
+  FiClock, 
+  FiCheckCircle, 
+  FiAlertCircle, 
+  FiSend,
+  FiZap,
+  FiLock
+} from 'react-icons/fi';
 import './Contact.css';
 
 // ============================================================
 // 🔧 GOOGLE SHEETS INTEGRATION
-// Steps to connect:
-// 1. Go to your Google Sheet → Extensions → Apps Script
-// 2. Paste the Apps Script code (see README or ask for it)
-// 3. Deploy as Web App (anyone can access)
-// 4. Replace the URL below with your deployed Web App URL
-// ============================================================
 const GOOGLE_SCRIPT_URL = 'https://script.google.com/a/macros/mangotreetech.com/s/AKfycbyV7hsl31NUWl7mL8zFAnbUjSV-xlUtS00XUmEjfsU0Ji_JgzmfQA3fb_bnDQmVwQEOFQ/exec';
 
 const contactInfo = [
-  { icon: '📍', label: 'Address', value: 'Dwarka, New Delhi, India' },
-  { icon: '📧', label: 'Email', value: 'hello@maplelingua.ca' },
-  { icon: '📞', label: 'Phone', value: '+91-98765 43210' },
-  { icon: '🕐', label: 'Hours', value: 'Mon–Fri: 9AM – 6PM EST' },
+  { icon: <FiMapPin />, label: 'Address', value: 'Dwarka, New Delhi, India' },
+  { icon: <FiMail />, label: 'Email', value: 'hello@maplelingua.ca' },
+  { icon: <FiPhone />, label: 'Phone', value: '+91-98765 43210' },
+  { icon: <FiClock />, label: 'Hours', value: 'Mon–Fri: 9AM – 6PM EST' },
 ];
 
 const languages = [
@@ -45,7 +50,6 @@ const [formData, setFormData] = useState({
     setStatus('loading');
 
     try {
-      // Build form-urlencoded body (works with Google Apps Script)
       const body = new URLSearchParams({
         ...formData,
         timestamp: new Date().toISOString(),
@@ -54,11 +58,9 @@ const [formData, setFormData] = useState({
       await fetch(GOOGLE_SCRIPT_URL, {
         method: 'POST',
         body,
-        // mode: 'no-cors' is needed because Google Apps Script doesn't set CORS headers for form posts
         mode: 'no-cors',
       });
 
-      // With no-cors we can't read the response, so we assume success
       setStatus('success');
       setFormData({ name: '', email: '', phone: '', language: '', message: '' });    } catch (err) {
       console.error(err);
@@ -73,11 +75,11 @@ const [formData, setFormData] = useState({
         <div className="page-hero__orb page-hero__orb--1" />
         <div className="page-hero__orb page-hero__orb--2" />
         <div className="container text-center" style={{ position: 'relative', zIndex: 1 }}>
-          <div className="badge badge-gold mb-md" style={{ display: 'inline-flex' }}>Get in Touch</div>
-          <h1 className="display-2 text-white mb-md">
+          <div className="badge badge-gold mb-md" style={{ display: 'inline-flex' }}><FiZap /> Get in Touch</div>
+          <h1 className="display-2 mb-md" style={{ color: 'var(--slate-900)' }}>
             Learn <span className="gradient-text">French with Confidence</span>
           </h1>
-          <p className="lead" style={{ color: 'rgba(255,255,255,0.7)', maxWidth: 560, margin: '0 auto' }}>
+          <p className="lead" style={{ color: 'var(--slate-600)', maxWidth: 560, margin: '0 auto' }}>
             Start your journey to speak French fluently. Join MapleLingua and learn from expert tutors with practical conversations from day one.
           </p>
         </div>
@@ -99,7 +101,7 @@ const [formData, setFormData] = useState({
               <div className="info-cards">
                 {contactInfo.map((info, i) => (
                   <div className="info-card" key={i} id={`contact-info-${i}`}>
-                    <div className="info-icon">{info.icon}</div>
+                    <div className="info-icon" style={{ color: 'var(--brand-primary)' }}>{info.icon}</div>
                     <div>
                       <div className="info-label">{info.label}</div>
                       <div className="info-value">{info.value}</div>
@@ -123,8 +125,8 @@ const [formData, setFormData] = useState({
               {/* Map placeholder */}
               <div className="map-placeholder">
                 <div className="map-inner">
-                  <span className="map-pin">📍</span>
-                  <p>270 Spadina Ave, Toronto</p>
+                  <span className="map-pin" style={{ color: 'var(--brand-primary)' }}><FiMapPin /></span>
+                  <p style={{ fontWeight: 600, color: 'var(--slate-900)' }}> Dwarka, New Delhi, India </p>
                   <p className="body-sm text-muted">Open in Google Maps →</p>
                 </div>
               </div>
@@ -140,7 +142,7 @@ const [formData, setFormData] = useState({
 
                 {status === 'success' ? (
                   <div className="form-success" id="form-success">
-                    <div className="success-icon">✅</div>
+                    <div className="success-icon" style={{ color: 'var(--brand-primary)' }}><FiCheckCircle /></div>
                     <h3 className="heading-2">Message Sent!</h3>
                     <p className="text-secondary mt-sm">
                       Merci beaucoup! Your message has been received. We'll be in touch within 24 hours.
@@ -230,7 +232,7 @@ const [formData, setFormData] = useState({
 
                     {status === 'error' && (
                       <div className="form-error" id="form-error">
-                        ⚠️ Something went wrong. Please check your connection and try again.
+                        <FiAlertCircle /> Something went wrong. Please check your connection and try again.
                       </div>
                     )}
 
@@ -244,12 +246,12 @@ const [formData, setFormData] = useState({
                       {status === 'loading' ? (
                         <><span className="spinner" />Sending...</>
                       ) : (
-                        '📨 Send Message'
+                        <><FiSend /> Send Message</>
                       )}
                     </button>
 
                     <p className="body-sm text-muted text-center mt-sm">
-                      🔒 Your information is encrypted and never shared.
+                      <FiLock /> Your information is encrypted and never shared.
                     </p>
                   </form>
                 )}

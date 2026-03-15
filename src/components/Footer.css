@@ -1,12 +1,13 @@
 .footer {
-  background: var(--slate-900);
-  color: var(--white);
+  background: var(--bg-secondary);
+  color: var(--slate-800);
+  border-top: 1px solid var(--slate-100);
 }
 
 /* CTA Strip */
 .footer__cta-strip {
-  background: var(--grad-hero);
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  background: var(--bg-accent);
+  border-top: 1px solid var(--slate-200);
   padding: 4.5rem 0;
 }
 
@@ -28,7 +29,7 @@
   grid-template-columns: 2fr 1.2fr 1fr 1fr;
   gap: 4rem;
   padding-bottom: 4rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid var(--slate-100);
 }
 
 /* Brand */
@@ -40,7 +41,7 @@
   font-family: var(--font-display);
   font-size: 1.5rem;
   font-weight: 700;
-  color: var(--white);
+  color: var(--slate-900);
 }
 
 .footer__logo .logo-accent {
@@ -48,7 +49,7 @@
 }
 
 .footer__tagline {
-  color: rgba(255, 255, 255, 0.4);
+  color: var(--slate-500);
   font-size: 0.95rem;
   line-height: 1.8;
   margin-bottom: 2rem;
@@ -67,12 +68,12 @@
   width: 44px;
   height: 44px;
   border-radius: 12px;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: white;
+  border: 1px solid var(--slate-200);
   font-size: 1.2rem;
   transition: all var(--transition-fast);
   cursor: pointer;
-  color: rgba(255, 255, 255, 0.6);
+  color: var(--slate-600);
 }
 
 .social-btn:hover {
@@ -90,7 +91,7 @@
   font-weight: 800;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--white);
+  color: var(--slate-900);
   margin-bottom: 1.75rem;
 }
 
@@ -101,7 +102,7 @@
 }
 
 .footer__link {
-  color: rgba(255, 255, 255, 0.45);
+  color: var(--slate-600);
   font-size: 0.95rem;
   transition: all var(--transition-fast);
   cursor: pointer;
@@ -109,7 +110,7 @@
 }
 
 .footer__link:hover {
-  color: var(--brand-secondary);
+  color: var(--brand-primary);
   padding-left: 4px;
 }
 
@@ -124,7 +125,7 @@
 }
 
 .footer__copy {
-  color: rgba(255, 255, 255, 0.25);
+  color: var(--slate-400);
   font-size: 0.85rem;
   font-weight: 500;
 }

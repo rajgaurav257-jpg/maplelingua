@@ -1,34 +1,48 @@
 import { Link } from 'react-router-dom';
+import { 
+  FiTarget, 
+  FiMic, 
+  FiSmartphone, 
+  FiAward, 
+  FiCheckCircle, 
+  FiUnlock, 
+  FiArrowRight,
+  FiZap,
+  FiBookOpen,
+  FiStar,
+  FiMail
+} from 'react-icons/fi';
+import { HiOutlineLightBulb, HiOutlineGlobeAlt, HiOutlineChartBar } from 'react-icons/hi';
 import './Home.css';
 
 const features = [
   {
-    icon: '🎯',
+    icon: <FiTarget />,
     title: 'Structured Learning Paths',
     desc: 'From bonjour to fluency — our curriculum follows CEFR standards (A1 to C2), guiding you step by step with clarity and purpose.',
   },
   {
-    icon: '🎙️',
+    icon: <FiMic />,
     title: 'Live Pronunciation Coaching',
     desc: 'Master the infamous French "r" and nasal vowels with AI-powered pronunciation feedback and live tutor sessions.',
   },
   {
-    icon: '🧠',
+    icon: <HiOutlineLightBulb />,
     title: 'Spaced Repetition Memory',
     desc: 'Our smart flashcard system uses proven cognitive science to lock vocabulary into your long-term memory.',
   },
   {
-    icon: '🇫🇷',
+    icon: <HiOutlineGlobeAlt />,
     title: 'Immersive French Culture',
     desc: 'Language is culture. Explore French cinema, cuisine, history, and etiquette while you learn to speak like a native.',
   },
   {
-    icon: '📱',
+    icon: <FiSmartphone />,
     title: 'Learn Anywhere, Anytime',
     desc: 'Fully responsive on all devices. Pick up your lesson on the metro, at a café, or from the comfort of your couch.',
   },
   {
-    icon: '🏆',
+    icon: <FiAward />,
     title: 'Certified Achievements',
     desc: 'Earn MapleLingua achievement badges and prepare for internationally recognized DELF/DALF certifications.',
   },
@@ -71,6 +85,69 @@ const levels = [
   { level: 'C1–C2', name: 'Avancé', desc: 'Fluent discourse, literature & business', color: '#9C27B0' },
 ];
 
+const frenchPrograms = [
+  {
+    title: "French for Beginners (A1-A2)",
+    badge: "FOUNDATIONAL",
+    desc: "Master the basics of French grammar, pronunciation and daily conversation.",
+    points: [
+      "Daily Conversation Practice",
+      "Interactive Cultural Lessons",
+      "Live Tutor Sessions"
+    ]
+  },
+  {
+    title: "Intermediate French (B1-B2)",
+    badge: "FLUENT",
+    desc: "Develop confidence in real-world conversations and complex expressions.",
+    points: [
+      "Thematic Learning Units",
+      "Grammar & Expression Mastery",
+      "Pronunciation Improvement"
+    ]
+  },
+  {
+    title: "Advanced Fluency (C1-C2)",
+    badge: "EXPERT",
+    desc: "Achieve near-native fluency with advanced writing and discussion.",
+    points: [
+      "Advanced Grammar Mastery",
+      "Academic Writing Skills",
+      "Debate & Discussion Practice"
+    ]
+  },
+  {
+    title: "DELF / DALF Preparation",
+    badge: "ACADEMIC",
+    desc: "Prepare for globally recognized French language certifications.",
+    points: [
+      "Mock Exam Practice",
+      "Exam Strategy Training",
+      "Personalized Feedback"
+    ]
+  },
+  {
+    title: "TEF Canada Preparation",
+    badge: "IMMIGRATION",
+    desc: "Special preparation for TEF exam required for Canada immigration.",
+    points: [
+      "Listening & Speaking Practice",
+      "TEF Mock Tests",
+      "Score Improvement Strategy"
+    ]
+  },
+  {
+    title: "French for Professionals",
+    badge: "CAREER",
+    desc: "Learn business French for workplace communication and meetings.",
+    points: [
+      "Business Communication",
+      "Professional Email Writing",
+      "Meeting & Presentation Skills"
+    ]
+  }
+];
+
 export default function Home() {
   return (
     <main className="home">
@@ -84,9 +161,9 @@ export default function Home() {
         <div className="container hero__content">
           <div className="hero__text animate-fadeUp">
             <div className="badge badge-gold mb-md">
-              <span>🇫🇷</span> Premier French Learning Platform
+              <HiOutlineGlobeAlt /> Premier French Learning Platform
             </div>
-            <h1 className="display-1 text-white hero__heading">
+            <h1 className="display-1 hero__heading" style={{ color: 'var(--slate-900)' }}>
               Speak French with
               <br />
               <em className="gradient-text">Confidence & Grace</em>
@@ -96,7 +173,7 @@ export default function Home() {
             </p>
             <div className="hero__actions">
               <Link to="/contact" className="btn btn-primary btn-lg" id="hero-cta-primary">
-                🚀 Start Free Today
+                <FiZap /> Start Free Today
               </Link>
               <Link to="/about" className="btn btn-outline btn-lg" id="hero-cta-secondary">
                 Discover Our Story
@@ -106,13 +183,15 @@ export default function Home() {
             {/* Trust stamps */}
             <div className="hero__trust">
               <div className="trust-item">
-                <span className="trust-stars">★★★★★</span>
+                <div className="trust-stars">
+                  <FiStar /><FiStar /><FiStar /><FiStar /><FiStar />
+                </div>
                 <span>4.9 / 5 from 2,400+ reviews</span>
               </div>
               <span className="trust-divider">|</span>
-              <div className="trust-item">🔒 No credit card required</div>
+              <div className="trust-item"><FiUnlock /> No credit card required</div>
               <span className="trust-divider">|</span>
-              <div className="trust-item">✅ Free 14-day trial</div>
+              <div className="trust-item"><FiCheckCircle /> Free 14-day trial</div>
             </div>
           </div>
 
@@ -120,7 +199,9 @@ export default function Home() {
           <div className="hero__card animate-fadeUp delay-300">
             <div className="hero-card">
               <div className="hero-card__header">
-                <div className="hero-card__flag">🇫🇷</div>
+                <div className="hero-card__flag">
+                  <img src="https://flagcdn.com/w80/fr.png" alt="French Flag" style={{ width: '32px', borderRadius: '4px' }} />
+                </div>
                 <div>
                   <div className="hero-card__label">Today's Lesson</div>
                   <div className="hero-card__title">Les Salutations</div>
@@ -153,9 +234,9 @@ export default function Home() {
                 <div className="hero-card__bar-fill" style={{ width: '78%' }} />
               </div>
               <div className="hero-card__stats">
-                <div className="hc-stat"><span>🔥</span> 12-day streak</div>
-                <div className="hc-stat"><span>📚</span> 48 words learned</div>
-                <div className="hc-stat"><span>⭐</span> 320 XP</div>
+                <div className="hc-stat"><FiZap className="text-gold" /> 12-day streak</div>
+                <div className="hc-stat"><FiBookOpen className="text-indigo" /> 48 words learned</div>
+                <div className="hc-stat"><FiStar className="text-gold" /> 320 XP</div>
               </div>
             </div>
           </div>
@@ -205,6 +286,38 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ===== FRENCH PROGRAMS ===== */}
+      <section className="section" id="programs">
+        <div className="container">
+          <div className="text-center mb-xl">
+            <p className="section-label">French Language Programs</p>
+            <h2 className="heading-1">Our Learning Path</h2>
+          </div>
+          <div className="program-grid">
+            {frenchPrograms.map((p, i) => (
+              <div className="program-card" key={i}>
+                <span className="program-badge">{p.badge}</span>
+                <h3>{p.title}</h3>
+                <p>{p.desc}</p>
+                <ul>
+                  {p.points.map((point, index) => (
+                    <li key={index}><FiCheckCircle className="text-gold" /> {point}</li>
+                  ))}
+                </ul>
+                <div className="program-buttons">
+                  <Link to="/contact" className="btn btn-primary">
+                    Enroll Now
+                  </Link>
+                  <button className="btn btn-outline">
+                    Syllabus
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ===== FEATURES ===== */}
       <section className="section features-section" id="features">
         <div className="container">
@@ -215,7 +328,7 @@ export default function Home() {
           <div className="grid-3 features-grid">
             {features.map((f, i) => (
               <div className="feature-card" key={i} id={`feature-${i}`}>
-                <div className="feature-icon">{f.icon}</div>
+                <div className="feature-icon" style={{ color: 'var(--brand-primary)' }}>{f.icon}</div>
                 <h3 className="heading-3 mt-md">{f.title}</h3>
                 <p className="text-secondary mt-sm body-lg">{f.desc}</p>
               </div>
@@ -250,13 +363,13 @@ export default function Home() {
                 ))}
               </div>
               <Link to="/contact" className="btn btn-primary btn-lg mt-lg" id="how-cta">
-                Begin My Journey
+                Begin My Journey <FiArrowRight />
               </Link>
             </div>
             <div className="how-visual">
               <div className="visual-card animate-float">
                 <div className="vc-top">
-                  <span className="vc-flag">🇫🇷</span>
+                  <HiOutlineGlobeAlt className="vc-flag text-gold" />
                   <span className="vc-title">Weekly Summary</span>
                 </div>
                 <div className="vc-bars">
@@ -293,9 +406,11 @@ export default function Home() {
           <div className="grid-3">
             {testimonials.map((t, i) => (
               <div className="testimonial-card" key={i} id={`testimonial-${i}`}>
-                <div className="testi-quote">"</div>
+                <div className="testi-quote" style={{ opacity: 0.05 }}>"</div>
                 <p className="testi-text">"{t.text}"</p>
-                <div className="testi-rating">{'★'.repeat(t.rating)}</div>
+                <div className="testi-rating">
+                  {[...Array(t.rating)].map((_, i) => <FiStar key={i} fill="currentColor" />)}
+                </div>
                 <div className="testi-author">
                   <div className="avatar">{t.avatar}</div>
                   <div>
@@ -312,18 +427,20 @@ export default function Home() {
       {/* ===== CTA BANNER ===== */}
       <section className="cta-banner" id="cta-banner">
         <div className="container text-center">
-          <p className="section-label" style={{ color: 'var(--gold-400)', display: 'flex', justifyContent: 'center' }}>
-            Limited Time
+          <p className="section-label" style={{ color: 'var(--brand-secondary)', display: 'flex', justifyContent: 'center' }}>
+            <FiZap /> Limited Time Access
           </p>
-          <h2 className="display-2 text-white mb-md">
+          <h2 className="display-2 mb-md" style={{ color: 'var(--slate-900)' }}>
             Start Speaking French <br />
             <span className="gradient-text">in Just 30 Days</span>
           </h2>
-          <p className="lead mb-lg" style={{ color: 'rgba(255,255,255,0.7)', maxWidth: 560, margin: '0 auto var(--space-lg)' }}>
+          <p className="lead mb-lg" style={{ color: 'var(--slate-600)', maxWidth: 560, margin: '0 auto var(--space-lg)' }}>
             Join 12,000+ learners who chose MapleLingua. Your first two weeks are completely free — no credit card needed.
           </p>
           <div className="flex-center gap-md" style={{ flexWrap: 'wrap' }}>
-            <Link to="/contact" className="btn btn-primary btn-lg" id="cta-banner-btn">🎯 Claim My Free Access</Link>
+            <Link to="/contact" className="btn btn-primary btn-lg" id="cta-banner-btn">
+              <FiTarget /> Claim My Free Access
+            </Link>
             <Link to="/blog" className="btn btn-outline btn-lg" id="cta-banner-blog">Read Our Blog</Link>
           </div>
         </div>

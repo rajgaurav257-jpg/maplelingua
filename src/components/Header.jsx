@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import logo from '../assets/Maple_logo.webp';
 import './Header.css';
+
 
 const navLinks = [
   { to: '/', label: 'Home' },
@@ -29,12 +31,18 @@ export default function Header() {
     <header className={`header ${scrolled ? 'header--scrolled' : ''}`} id="header">
       <div className="container header__inner">
         {/* Logo */}
-        <Link to="/" className="header__logo" id="nav-logo">
-          <span className="logo-icon">🍁</span>
-          <span className="logo-text">
-            Maple<span className="logo-accent">Lingua</span>
-          </span>
-        </Link>
+       {/* Logo */}
+<Link to="/" className="header__logo" id="nav-logo">
+
+{!scrolled ? (
+  <img src={logo} alt="MapleLingua Logo" className="logo-img" />
+) : (
+  <span className="logo-text">
+    Maple<span className="logo-accent">Lingua</span>
+  </span>
+)}
+
+</Link>
 
         {/* Nav */}
         <nav className={`header__nav ${menuOpen ? 'header__nav--open' : ''}`} id="main-nav">

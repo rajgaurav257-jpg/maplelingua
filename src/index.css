@@ -5,29 +5,32 @@
 
 :root {
   /* =============================================
-     MAPLELINGUA — PREMIUM DESIGN SYSTEM (v2.0)
-     Theme: Minimalist Premium (Slate + Indigo + Pearl)
+     MAPLELINGUA — PREMIUM DESIGN SYSTEM (v3.0)
+     Theme: Airy Luxury (Pearl + Gold + Champagne)
      ============================================= */
 
   /* Core Brand Colors */
-  --brand-primary: #4F46E5;    /* Vibrant Indigo */
+  --brand-primary: #4F46E5;    /* Luxury Indigo */
   --brand-primary-hover: #4338CA;
-  --brand-secondary: #F59E0B;  /* Amber Gold (Accent) */
-  --brand-secondary-light: #FEF3C7;
+  --brand-secondary: #C5A059;  /* Burnished Gold */
+  --brand-secondary-light: #F8F3E8; /* Champagne Glow */
 
   /* Neutral Spectrum */
-  --slate-900: #0F172A;
-  --slate-800: #1E293B;        /* Midnight Slate */
+  --slate-900: #0F172A;        /* Only for text */
+  --slate-800: #1E293B;
   --slate-700: #334155;
-  --slate-600: #475569;        /* Cool Slate */
+  --slate-600: #475569;
   --slate-500: #64748B;
   --slate-400: #94A3B8;
+  --slate-200: #E2E8F0;
   --slate-100: #F1F5F9;
+  --slate-50: #F8FAFC;
 
   /* Backgrounds */
-  --bg-main: #FBFBFE;          /* Pure Pearl */
+  --bg-main: #FFFFFF;          /* Pure White Base */
+  --bg-secondary: #FBFBFE;     /* Pearl Softness */
   --bg-card: #FFFFFF;
-  --bg-dark: #1E293B;
+  --bg-accent: #F8F3E8;        /* Champagne Highlight */
 
   /* Text Colors */
   --white: #FFFFFF;
@@ -36,25 +39,27 @@
   --text-muted: #64748B;
 
   /* Interaction & States */
-  --glow-primary: rgba(79, 70, 229, 0.15);
-  --glow-secondary: rgba(245, 158, 11, 0.15);
+  --glow-primary: rgba(79, 70, 229, 0.08);
+  --glow-secondary: rgba(197, 160, 89, 0.12);
 
   /* Gradients */
-  --grad-hero: linear-gradient(135deg, #1E293B 0%, #334155 100%);
+  --grad-hero: linear-gradient(135deg, #FFFFFF 0%, #F1F5F9 100%);
   --grad-primary: linear-gradient(135deg, #4F46E5 0%, #6366F1 100%);
-  --grad-accent: linear-gradient(135deg, #F59E0B 0%, #D97706 100%);
+  --grad-accent: linear-gradient(135deg, #C5A059 0%, #B38B42 100%);
+  --grad-pearl: linear-gradient(135deg, #FBFBFE 0%, #F1F5F9 100%);
 
   /* Shadows */
-  --shadow-sm: 0 2px 4px rgba(0,0,0,0.05);
-  --shadow-md: 0 10px 25px -5px rgba(0,0,0,0.08), 0 8px 10px -6px rgba(0,0,0,0.05);
-  --shadow-lg: 0 20px 50px -12px rgba(0,0,0,0.12);
-  --shadow-primary: 0 10px 20px -5px rgba(79, 70, 229, 0.3);
+  --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+  --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.04), 0 4px 6px -2px rgba(0, 0, 0, 0.02);
+  --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 10px 10px -5px rgba(0, 0, 0, 0.02);
+  --shadow-primary: 0 10px 20px -5px rgba(79, 70, 229, 0.2);
+  --shadow-gold: 0 10px 20px -5px rgba(197, 160, 89, 0.3);
 
   /* Typography */
   --font-display: 'Playfair Display', Georgia, serif;
   --font-body: 'Inter', system-ui, sans-serif;
 
-  /* Spacing (Consistent) */
+  /* Spacing */
   --space-xs: 0.5rem;
   --space-sm: 1rem;
   --space-md: 1.5rem;
@@ -64,9 +69,9 @@
   --space-3xl: 8rem;
 
   /* Border Radius */
-  --radius-sm: 8px;
-  --radius-md: 16px;
-  --radius-lg: 24px;
+  --radius-sm: 12px;
+  --radius-md: 20px;
+  --radius-lg: 32px;
   --radius-full: 9999px;
 
   /* Transitions */

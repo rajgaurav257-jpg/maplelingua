@@ -1,18 +1,28 @@
 import { Link } from 'react-router-dom';
+import { 
+  FiAward, 
+  FiGlobe, 
+  FiHeart, 
+  FiSearch, 
+  FiZap,
+  FiStar,
+  FiCheckCircle
+} from 'react-icons/fi';
+import { HiOutlineLightBulb, HiOutlineGlobeAlt, HiOutlineAcademicCap } from 'react-icons/hi';
 import './About.css';
 
 const values = [
-  { icon: '🎓', title: 'Pedagogical Excellence', desc: 'Our curricula are crafted by certified linguists and language acquisition experts, aligned to CEFR international standards.' },
-  { icon: '🌍', title: 'Cultural Immersion', desc: 'We believe language is the vessel of culture. Every lesson is woven with French art, cuisine, history, and contemporary life.' },
-  { icon: '❤️', title: 'Learner First', desc: 'Every decision we make begins with one question: "How does this serve our learners?" We are truly dedicated to your success.' },
-  { icon: '🔬', title: 'Science-Backed Methods', desc: 'Spaced repetition, active recall, comprehensible input — our approach is grounded in decades of language learning research.' },
+  { icon: <HiOutlineAcademicCap />, title: 'Pedagogical Excellence', desc: 'Our curricula are crafted by certified linguists and language acquisition experts, aligned to CEFR international standards.' },
+  { icon: <HiOutlineGlobeAlt />, title: 'Cultural Immersion', desc: 'We believe language is the vessel of culture. Every lesson is woven with French art, cuisine, history, and contemporary life.' },
+  { icon: <FiHeart />, title: 'Learner First', desc: 'Every decision we make begins with one question: "How does this serve our learners?" We are truly dedicated to your success.' },
+  { icon: <FiSearch />, title: 'Science-Backed Methods', desc: 'Spaced repetition, active recall, comprehensible input — our approach is grounded in decades of language learning research.' },
 ];
 
 const team = [
-  { name: 'Sophie Beaumont', role: 'Lead Curriculum Designer', bio: 'Former Sorbonne lecturer with 12 years of French pedagogy experience.', initials: 'SB', flag: '🇫🇷' },
-  { name: 'Arjun Mehta', role: 'CEO & Co-founder', bio: 'Passionate polyglot and EdTech entrepreneur who speaks 6 languages fluently.', initials: 'AM', flag: '🇨🇦' },
-  { name: 'Claire Dubois', role: 'Head of Tutoring', bio: 'Native Parisian tutor with expertise in accent reduction and conversational French.', initials: 'CD', flag: '🇫🇷' },
-  { name: 'Riya Kapoor', role: 'Technology & AI Lead', bio: 'ML engineer building the adaptive learning engine that personalizes every lesson.', initials: 'RK', flag: '🇮🇳' },
+  { name: 'Sophie Beaumont', role: 'Lead Curriculum Designer', bio: 'Former Sorbonne lecturer with 12 years of French pedagogy experience.', initials: 'SB', flag: 'https://flagcdn.com/w40/fr.png' },
+  { name: 'Arjun Mehta', role: 'CEO & Co-founder', bio: 'Passionate polyglot and EdTech entrepreneur who speaks 6 languages fluently.', initials: 'AM', flag: 'https://flagcdn.com/w40/ca.png' },
+  { name: 'Claire Dubois', role: 'Head of Tutoring', bio: 'Native Parisian tutor with expertise in accent reduction and conversational French.', initials: 'CD', flag: 'https://flagcdn.com/w40/fr.png' },
+  { name: 'Riya Kapoor', role: 'Technology & AI Lead', bio: 'ML engineer building the adaptive learning engine that personalizes every lesson.', initials: 'RK', flag: 'https://flagcdn.com/w40/in.png' },
 ];
 
 const milestones = [
@@ -32,12 +42,12 @@ export default function About() {
         <div className="page-hero__orb page-hero__orb--1" />
         <div className="page-hero__orb page-hero__orb--2" />
         <div className="container text-center" style={{ position: 'relative', zIndex: 1 }}>
-          <div className="badge badge-gold mb-md" style={{ display: 'inline-flex' }}>Our Story</div>
-          <h1 className="display-2 text-white mb-md">
+          <div className="badge badge-gold mb-md" style={{ display: 'inline-flex' }}><FiZap /> Our Story</div>
+          <h1 className="display-2 mb-md" style={{ color: 'var(--slate-900)' }}>
             Building the World's Most<br />
             <span className="gradient-text">Elegant French Platform</span>
           </h1>
-          <p className="lead" style={{ color: 'rgba(255,255,255,0.7)', maxWidth: 580, margin: '0 auto' }}>
+          <p className="lead" style={{ color: 'var(--slate-600)', maxWidth: 580, margin: '0 auto' }}>
             Born in Canada, inspired by France — MapleLingua was founded by language lovers who believed that learning French should be as beautiful as the language itself.
           </p>
         </div>
@@ -65,7 +75,9 @@ export default function About() {
             </div>
             <div className="mission-visual">
               <div className="mission-card">
-                <div className="mc-flag">🇫🇷</div>
+                <div className="mc-flag">
+                  <img src="https://flagcdn.com/w80/fr.png" alt="French Flag" style={{ width: '40px', borderRadius: '4px' }} />
+                </div>
                 <blockquote className="mc-quote">
                   "Une langue différente est une vision différente de la vie."
                 </blockquote>
@@ -93,7 +105,7 @@ export default function About() {
           <div className="grid-4">
             {values.map((v, i) => (
               <div className="value-card" key={i} id={`value-${i}`}>
-                <div className="value-icon">{v.icon}</div>
+                <div className="value-icon" style={{ color: 'var(--brand-primary)' }}>{v.icon}</div>
                 <h3 className="heading-3 mt-md">{v.title}</h3>
                 <p className="text-secondary mt-sm body-sm">{v.desc}</p>
               </div>
@@ -103,18 +115,18 @@ export default function About() {
       </section>
 
       {/* TIMELINE */}
-      <section className="section timeline-section">
+      <section className="section timeline-section" style={{ background: 'var(--pearl-500)' }}>
         <div className="container">
           <div className="text-center mb-xl">
             <p className="section-label">Our Journey</p>
-            <h2 className="heading-1 text-white">From Startup to Category Leader</h2>
+            <h2 className="heading-1" style={{ color: 'var(--slate-900)' }}>From Startup to Category Leader</h2>
           </div>
           <div className="timeline">
             {milestones.map((m, i) => (
               <div key={i} className={`timeline-item ${i % 2 === 0 ? 'timeline-item--left' : 'timeline-item--right'}`} id={`timeline-${i}`}>
                 <div className="timeline-content">
                   <span className="timeline-year">{m.year}</span>
-                  <p className="timeline-event">{m.event}</p>
+                  <p className="timeline-event" style={{ color: 'var(--slate-600)' }}>{m.event}</p>
                 </div>
                 <div className="timeline-dot" />
               </div>
@@ -135,7 +147,7 @@ export default function About() {
               <div className="team-card card" key={i} id={`team-${i}`}>
                 <div className="team-avatar">
                   {t.initials}
-                  <span className="team-flag">{t.flag}</span>
+                  <img src={t.flag} alt="Flag" className="team-flag" style={{ width: '24px', height: '16px', borderRadius: '2px', position: 'absolute', bottom: '-5px', right: '-5px', border: '1px solid white' }} />
                 </div>
                 <h3 className="heading-3 mt-md">{t.name}</h3>
                 <p className="text-gold body-sm">{t.role}</p>
@@ -149,8 +161,8 @@ export default function About() {
       {/* CTA */}
       <section className="about-cta">
         <div className="container text-center">
-          <h2 className="display-2 text-white mb-md">Ready to Transform Your French?</h2>
-          <p className="lead mb-lg" style={{ color: 'rgba(255,255,255,0.65)', maxWidth: 520, margin: '0 auto var(--space-lg)' }}>
+          <h2 className="display-2 mb-md" style={{ color: 'var(--slate-900)' }}>Ready to Transform Your French?</h2>
+          <p className="lead mb-lg" style={{ color: 'var(--slate-600)', maxWidth: 520, margin: '0 auto var(--space-lg)' }}>
             Join a community of ambitious learners and start speaking French with confidence.
           </p>
           <Link to="/contact" className="btn btn-primary btn-lg" id="about-cta-btn">Start Your Free Trial</Link>
