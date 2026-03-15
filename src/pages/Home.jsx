@@ -92,9 +92,27 @@ const testimonials = [
 ];
 
 const levels = [
-  { level: 'A1–A2', name: 'Débutant', desc: 'Greetings, numbers, everyday phrases', color: '#4CAF50' },
-  { level: 'B1–B2', name: 'Intermédiaire', desc: 'Travel, work, culture & conversation', color: '#C9A84C' },
-  { level: 'C1–C2', name: 'Avancé', desc: 'Fluent discourse, literature & business', color: '#9C27B0' },
+  {
+    level: 'A1–A2',
+    name: 'Débutant',
+    desc: 'Master the basics: greetings, numbers, and everyday phrases for a solid foundation.',
+    color: '#4CAF50',
+    icon: <FiZap />
+  },
+  {
+    level: 'B1–B2',
+    name: 'Intermédiaire',
+    desc: 'Bridge the gap: Travel, work, and fluid conversation in a variety of cultural contexts.',
+    color: '#C9A84C',
+    icon: <FiBookOpen />
+  },
+  {
+    level: 'C1–C2',
+    name: 'Avancé',
+    desc: 'Reach mastery: Fluent discourse, complex literature, and professional business French.',
+    color: '#9C27B0',
+    icon: <FiAward />
+  },
 ];
 
 const frenchPrograms = [
@@ -332,7 +350,7 @@ export default function Home() {
       </section>
 
       {/* ===== LEVELS ===== */}
-      <section className="section reveal" id="levels">
+      <section className="section levels-section reveal" id="levels">
         <div className="container text-center">
           <p className="section-label">Find Your Level</p>
           <h2 className="heading-1 mb-md">Courses for Every Stage</h2>
@@ -341,13 +359,18 @@ export default function Home() {
           </p>
           <div className="grid-3 perspective-3d">
             {levels.map((l, i) => (
-              <div className="level-card card tilt-effect" key={i} id={`level-card-${i}`}>
+              <div className="level-card-v2 tilt-effect" key={i} id={`level-card-${i}`}>
+                <div className="level-icon-wrap" style={{ '--level-color': l.color }}>
+                  {l.icon}
+                </div>
                 <div className="level-badge" style={{ background: l.color }}>{l.level}</div>
                 <h3 className="heading-2 mt-md">{l.name}</h3>
-                <p className="text-secondary mt-sm">{l.desc}</p>
-                <Link to="/contact" className="btn btn-navy mt-md" style={{ display: 'inline-flex' }} id={`level-cta-${i}`}>
-                  Enroll Now
-                </Link>
+                <p className="text-secondary mt-sm body-lg">{l.desc}</p>
+                <div className="level-cta-wrap">
+                  <Link to="/contact" className="btn btn-navy-minimal mt-lg" id={`level-cta-${i}`}>
+                    Enroll Now <FiArrowRight className="ml-sm" />
+                  </Link>
+                </div>
               </div>
             ))}
           </div>

@@ -37,6 +37,7 @@ export default function Preloader({ onComplete }) {
             <img src={logo} alt="MapleLingua Logo" className="preloader__logo" />
           </div>
           <div className="merger-words">
+            <div className="merger-line"></div>
             <div className="merger-word maple">MAPLE</div>
             <div className="merger-word lingua">LINGUA</div>
           </div>
