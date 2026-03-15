@@ -25,10 +25,6 @@ const contactInfo = [
 
 const languages = [
   'French',
-  'German',
-  'Italian',
-  'Spanish',
-  'English'
 ];
 
 export default function Contact() {
