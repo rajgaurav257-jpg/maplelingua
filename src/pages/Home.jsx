@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { 
-  FiTarget, 
-  FiMic, 
-  FiSmartphone, 
-  FiAward, 
-  FiUnlock, 
+import {
+  FiTarget,
+  FiMic,
+  FiSmartphone,
+  FiAward,
+  FiUnlock,
   FiArrowRight,
   FiZap,
   FiBookOpen,
@@ -22,6 +22,7 @@ import {
 import { HiOutlineLightBulb, HiOutlineGlobeAlt, HiOutlineChartBar } from 'react-icons/hi';
 import heroImg from '../assets/hero-premium.jpg';
 import { useReveal } from '../hooks/useReveal';
+import GlobePreloader from '../components/GlobePreloader';
 import './Home.css';
 
 const GOOGLE_SCRIPT_URL = 'https://script.google.com/a/macros/mangotreetech.com/s/AKfycbyV7hsl31NUWl7mL8zFAnbUjSV-xlUtS00XUmEjfsU0Ji_JgzmfQA3fb_bnDQmVwQEOFQ/exec';
@@ -237,35 +238,24 @@ export default function Home() {
                 <p className="trust-subtitle">Helping 20,000+ students globally</p>
               </div>
             </div>
+
+            <div className="hero__search mt-xl">
+              <div className="search-box-wrapper" style={{ display: 'flex', gap: '1rem', maxWidth: '400px', marginBottom: '1.5rem' }}>
+                <input type="text" placeholder="What do you want to learn today?" className="form-control" style={{ flex: 1, padding: '1rem 1.5rem', borderRadius: '50px', border: '1px solid var(--slate-200)', outline: 'none' }} />
+                <button className="btn btn-primary" style={{ borderRadius: '50px', padding: '0 1.5rem' }}><FiTarget /></button>
+              </div>
+              <ul className="hero__features-list" style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.75rem', color: 'var(--slate-600)', fontWeight: 500 }}>
+                <li style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}><FiCheckCircle className="text-gold" /> Native French Tutors</li>
+                <li style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}><FiCheckCircle className="text-gold" /> CEFR Aligned Curriculum</li>
+                <li style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}><FiCheckCircle className="text-gold" /> Flexible Scheduling</li>
+              </ul>
+            </div>
           </div>
 
-          {/* Right Side: Visual Card */}
-          <div className="hero__visual animate-fadeIn perspective-3d">
-            <div className="hero-card-v2 tilt-effect">
-              <div className="fluency-badge-v2">
-                <span className="fb-num">98%</span>
-                <span className="fb-text">FLUENCY RATE</span>
-              </div>
-              
-              <div className="hc-img-wrap">
-                <img 
-                  src={heroImg} 
-                  alt="Language learners collaboration" 
-                  className="hc-main-img" 
-                />
-              </div>
-
-              <div className="hc-testimonial-v2">
-                <div className="testimonial__meta">
-                  <span className="tm-label">LIVE SESSION</span>
-                  <span className="tm-now"><span className="dot-red"></span> NOW</span>
-                </div>
-                <p className="tm-quote">
-                  "The most effective way to learn. My tutor was exceptional at tailoring sessions to my business needs."
-                </p>
-                <p className="tm-author">— Julian V., CEO at FinTech Global</p>
-              </div>
-            </div>
+          {/* Right Side: Visual Card (3D Globe) */}
+          <div className="hero__visual perspective-3d" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%', aspectRatio: '1/1', maxWidth: '600px', margin: '0 auto', transform: 'translateY(-14rem)' }}>
+            {/* Globe spins freely with no background container */}
+            <GlobePreloader heroMode={true} />
           </div>
         </div>
       </section>
@@ -493,12 +483,12 @@ export default function Home() {
                 </div>
 
                 <div className="v3-footer">
-                   <div className="v3-badge-certified">
-                     <FiCheckCircle /> CERTIFIED PROGRESS
-                   </div>
-                   <div className="v3-xp-bar">
-                     <div className="v3-xp-fill" style={{ width: '70%' }}></div>
-                   </div>
+                  <div className="v3-badge-certified">
+                    <FiCheckCircle /> CERTIFIED PROGRESS
+                  </div>
+                  <div className="v3-xp-bar">
+                    <div className="v3-xp-fill" style={{ width: '70%' }}></div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -544,7 +534,7 @@ export default function Home() {
               <p className="lead mb-xl">
                 Ready to begin your journey or need more details? Our elite team of advisors is here to guide you toward the perfect learning path.
               </p>
-              
+
               <div className="hc-features">
                 <div className="hc-feat-item">
                   <div className="hc-feat-icon"><FiMail /></div>
@@ -576,47 +566,47 @@ export default function Home() {
                   <form className="hc-form" onSubmit={handleSubmit}>
                     <div className="hc-form-group">
                       <label htmlFor="hc-name">Full Name</label>
-                      <input 
-                        type="text" 
-                        id="hc-name" 
-                        name="name" 
-                        placeholder="Jean Dupont" 
-                        value={formData.name} 
+                      <input
+                        type="text"
+                        id="hc-name"
+                        name="name"
+                        placeholder="Jean Dupont"
+                        value={formData.name}
                         onChange={handleChange}
-                        required 
+                        required
                       />
                     </div>
                     <div className="hc-form-group">
                       <label htmlFor="hc-email">Email Address</label>
-                      <input 
-                        type="email" 
-                        id="hc-email" 
-                        name="email" 
-                        placeholder="jean@example.com" 
-                        value={formData.email} 
+                      <input
+                        type="email"
+                        id="hc-email"
+                        name="email"
+                        placeholder="jean@example.com"
+                        value={formData.email}
                         onChange={handleChange}
-                        required 
+                        required
                       />
                     </div>
                     <div className="hc-form-group">
                       <label htmlFor="hc-phone">Phone Number</label>
-                      <input 
-                        type="tel" 
-                        id="hc-phone" 
-                        name="phone" 
-                        placeholder="+33 1 23 45 67 89" 
-                        value={formData.phone} 
+                      <input
+                        type="tel"
+                        id="hc-phone"
+                        name="phone"
+                        placeholder="+33 1 23 45 67 89"
+                        value={formData.phone}
                         onChange={handleChange}
                       />
                     </div>
                     <div className="hc-form-group">
                       <label htmlFor="hc-message">Your Message</label>
-                      <textarea 
-                        id="hc-message" 
-                        name="message" 
-                        placeholder="How can we help you master French?" 
-                        rows="4" 
-                        value={formData.message} 
+                      <textarea
+                        id="hc-message"
+                        name="message"
+                        placeholder="How can we help you master French?"
+                        rows="4"
+                        value={formData.message}
                         onChange={handleChange}
                         required
                       ></textarea>

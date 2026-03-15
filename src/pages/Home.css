@@ -530,59 +530,66 @@
 /* Learning Path Horizontal Scroll - Fixed */
 @media (max-width: 768px) {
   #programs {
-    padding: 2rem 0; /* Reduced section padding */
+    padding: 3rem 0; 
   }
   
   .program-grid {
-    display: flex !important; /* Force flex to override any grid defaults */
+    display: flex !important; 
     overflow-x: auto !important;
     scroll-snap-type: x mandatory;
-    gap: 1.25rem; /* Reduced gap */
-    padding: 1rem 0.5rem 2rem;
-    margin: 0 -1rem;
-    padding-left: 1rem;
-    padding-right: 1rem;
+    gap: 1.5rem; /* Slightly larger gap between cards */
+    padding: 1rem 1.5rem 2rem; /* Ensure padding on edges matches gap */
+    margin: 0 -1rem; /* Pull out to edge of screen to allow scroll bleed */
     scrollbar-width: none;
     -ms-overflow-style: none;
-    grid-template-columns: none !important; /* Remove grid logic */
+    grid-template-columns: none !important; 
+    -webkit-overflow-scrolling: touch;
   }
   .program-grid::-webkit-scrollbar { display: none; }
   
   .program-card {
-    min-width: 75vw; /* Reduced from 80vw to fit better */
+    min-width: 85vw; /* Show edge of next card */
+    max-width: 320px; /* Prevent it getting too wide on tablets */
     flex: 0 0 auto;
     scroll-snap-align: center;
-    min-height: auto; /* Allow content to dictate height */
-    padding: 1.5rem !important; /* Reduced padding */
+    min-height: auto; 
+    padding: 1.75rem !important; /* Proper internal spacing */
+    box-shadow: 0 8px 24px rgba(0,0,0,0.06); /* Better shadow */
+    margin-bottom: 1rem; /* Space for shadow */
   }
 
   .program-card h3 {
-    font-size: 1.2rem !important;
-    margin: 4px 0 !important;
+    font-size: 1.35rem !important;
+    margin: 8px 0 12px !important;
   }
 
   .program-card p {
-    font-size: 0.85rem !important;
-    line-height: 1.4 !important;
+    font-size: 0.95rem !important;
+    line-height: 1.5 !important;
+    color: var(--slate-600);
   }
 
   .program-card ul {
-    margin-top: 8px !important;
+    margin-top: 16px !important;
   }
 
   .program-card li {
-    font-size: 0.8rem !important;
-    margin-bottom: 4px !important;
+    font-size: 0.9rem !important;
+    margin-bottom: 8px !important;
   }
 
   .program-buttons {
-    margin-top: 15px !important;
-    gap: 8px !important;
+    margin-top: 24px !important;
+    gap: 12px !important;
+    flex-direction: column; /* Stack buttons on mobile for better touch targets */
   }
 
   .program-buttons .btn {
-    padding: 0.6rem 1rem !important;
-    font-size: 0.85rem !important;
+    width: 100%; /* Full width buttons */
+    padding: 1rem !important;
+    font-size: 0.95rem !important;
+    text-align: center;
+    justify-content: center;
   }
 }
 
@@ -792,12 +799,18 @@ margin-top:20px;
   .how-grid {
     display: flex;
     flex-direction: column;
-    gap: 3rem;
+    gap: 2rem; /* Reduced gap between text and visual */
+  }
+  .how-text {
+    order: 1; /* Keep text on top */
   }
   .visual-card-v3 {
-    max-width: 500px;
-    margin: 3rem auto 0;
+    max-width: 100%; /* Use full width */
+    margin: 1rem auto 0;
     padding: 1.5rem;
+  }
+  .v3-stat-box {
+    padding: 0.75rem; /* Compact stats */
   }
 }
 
@@ -1004,26 +1017,39 @@ margin-top:20px;
 
 /* Testimonials Mobile Scroller */
 @media (max-width: 768px) {
+  .testimonials-section {
+    padding-bottom: 3rem;
+  }
   .testimonials-section .grid-3 {
     display: flex !important;
     overflow-x: auto !important;
     scroll-snap-type: x mandatory;
-    gap: 1.5rem;
-    padding: 1rem 0.5rem 2.5rem;
-    margin: 0 -1rem;
-    padding-left: 1rem;
-    padding-right: 1rem;
+    gap: 1.5rem; /* Consistent gaps */
+    padding: 1rem 1.5rem 2.5rem; /* Padding to stop shadow clipping */
+    margin: 0 -1rem; /* Bleed to edge */
     scrollbar-width: none;
     -ms-overflow-style: none;
     grid-template-columns: none !important;
-    perspective: none; /* Disable perspective to fix scroll clipping */
+    perspective: none; 
+    -webkit-overflow-scrolling: touch;
   }
   .testimonials-section .grid-3::-webkit-scrollbar { display: none; }
   .testimonial-card {
     min-width: 85vw;
+    max-width: 340px;
     flex: 0 0 auto;
     scroll-snap-align: center;
     padding: 2.5rem 2rem;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .testi-text {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
   }
 }
 
@@ -1247,12 +1273,12 @@ margin-top:20px;
     padding: 1rem 0 3rem; /* Aggressive reduction for first view */
   }
   .stats-grid { 
-    grid-template-columns: repeat(4, 1fr); 
-    gap: 0.5rem; 
-    padding: 0 0.5rem;
+    grid-template-columns: repeat(2, 1fr); /* Changed to 2x2 for readability */
+    gap: 1.5rem; 
+    padding: 0 1rem;
   }
-  .stat-value { font-size: 1.25rem; } 
-  .stat-label { font-size: 0.6rem; letter-spacing: 0.05em; }
+  .stat-value { font-size: 2rem; margin-bottom: 0.2rem; } 
+  .stat-label { font-size: 0.75rem; letter-spacing: 0.1em; }
   .hero__trust { 
     flex-direction: row; 
     justify-content: center; 

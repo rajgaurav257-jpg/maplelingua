@@ -1,35 +1,27 @@
 import React, { useState, useEffect } from 'react';
-import GlobePreloader from './GlobePreloader';
 import './Preloader.css';
 
 
 
 export default function Preloader({ onComplete }) {
-  const [stage, setStage] = useState(1); // 1: Globe, 2: Logos
   const [merged, setMerged] = useState(false);
 
   useEffect(() => {
-    if (stage === 2) {
-      // Start merger animation after a short delay
-      const mergeTimer = setTimeout(() => {
-        setMerged(true);
-      }, 500);
+    // Start merger animation after a short delay
+    const mergeTimer = setTimeout(() => {
+      setMerged(true);
+    }, 500);
 
-      // Final reveal after merger completes
-      const exitTimer = setTimeout(() => {
-        onComplete();
-      }, 2500);
+    // Final reveal after merger completes
+    const exitTimer = setTimeout(() => {
+      onComplete();
+    }, 2500);
 
-      return () => {
-        clearTimeout(mergeTimer);
-        clearTimeout(exitTimer);
-      };
-    }
-  }, [stage, onComplete]);
-
-  if (stage === 1) {
-    return <GlobePreloader onComplete={() => setStage(2)} />;
-  }
+    return () => {
+      clearTimeout(mergeTimer);
+      clearTimeout(exitTimer);
+    };
+  }, [onComplete]);
 
   return (
     <div className={`preloader preloader--logos`}>

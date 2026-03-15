@@ -1,67 +1,32 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useRef, useEffect } from 'react';
 import Globe from 'react-globe.gl';
-import './GlobePreloader.css';
 
-const GlobePreloader = ({ onComplete }) => {
-  const globeRef = useRef();
-  const [coords, setCoords] = useState({ lat: 20, lng: 0 }); // Default
-  const [isZoomed, setIsZoomed] = useState(false);
+export default function GlobePreloader({ heroMode = true }) {
+  const globeEl = useRef();
 
   useEffect(() => {
-    // 1. Fetch Location by IP
-    fetch('https://ipapi.co/json/')
-      .then(res => res.json())
-      .then(data => {
-        if (data.latitude && data.longitude) {
-          setCoords({ lat: data.latitude, lng: data.longitude });
-        }
-      })
-      .catch(err => console.error("Location fetch failed:", err));
-
-    // 2. Initial Setup
-    const globe = globeRef.current;
-    if (globe) {
-      globe.controls().autoRotate = true;
-      globe.controls().autoRotateSpeed = 4.0; // Faster spin
-      globe.pointOfView({ lat: 20, lng: 0, altitude: 1.8 }, 0);
+    if (globeEl.current) {
+      const controls = globeEl.current.controls();
+      controls.autoRotate = true;
+      controls.autoRotateSpeed = 1.2;
+      controls.enableZoom = false;
+      
+      // Configure the initial camera position to focus on France / Europe
+      // Altitude 1.8 gives a good zoom level for the hero section
+      globeEl.current.pointOfView({ lat: 46.2276, lng: 2.2137, altitude: 1.8 });
     }
-
-    // 3. Stage 1 Lifecycle: Wait, then Zoom (Faster)
-    const timer = setTimeout(() => {
-      if (globe) {
-        setIsZoomed(true);
-        // Cinematic Zoom-In: Faster (1.5s)
-        globe.pointOfView(
-          { lat: coords.lat, lng: coords.lng, altitude: 0.1 }, 
-          1500 
-        );
-        
-        // Hand-off to Stage 2: Faster
-        setTimeout(onComplete, 1800); 
-      }
-    }, 1500); // Shorter wait before zoom
-
-    return () => clearTimeout(timer);
-  }, [onComplete, coords.lat, coords.lng]);
+  }, []);
 
   return (
-    <div className={`globe-preloader ${isZoomed ? 'zooming' : ''}`}>
-      <div className="globe-overlay" />
+    <div className={`globe-wrapper ${heroMode ? 'globe-hero' : ''}`} style={{ width: '100%', height: '100%', cursor: 'grab' }}>
       <Globe
-        ref={globeRef}
-        backgroundColor="rgba(0,0,0,0)"
-        globeImageUrl="//unpkg.com/three-globe/example/img/earth-blue-marble.jpg"
+        ref={globeEl}
+        globeImageUrl="https://raw.githubusercontent.com/mrdoob/three.js/master/examples/textures/planets/earth_atmos_4096.jpg"
         bumpImageUrl="//unpkg.com/three-globe/example/img/earth-topology.png"
-        backgroundImageUrl="//unpkg.com/three-globe/example/img/night-sky.png"
-        showAtmosphere={true}
-        atmosphereColor="#ffffff"
+        backgroundColor="rgba(0,0,0,0)" // Transparent background
+        atmosphereColor="#c5a034" // Matches the brand's gold accent
         atmosphereAltitude={0.15}
       />
-      <div className="location-ping">
-        <div className="ping-text">LOCATING ACCESS POINT...</div>
-      </div>
     </div>
   );
-};
-
-export default GlobePreloader;
+}
