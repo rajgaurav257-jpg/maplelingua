@@ -1,14 +1,13 @@
 .footer {
-  background: var(--navy-900);
+  background: var(--slate-900);
   color: var(--white);
 }
 
 /* CTA Strip */
 .footer__cta-strip {
-  background: linear-gradient(135deg, var(--navy-700) 0%, var(--navy-600) 100%);
-  border-top: 1px solid rgba(201, 168, 76, 0.2);
-  border-bottom: 1px solid rgba(201, 168, 76, 0.08);
-  padding: 3.5rem 0;
+  background: var(--grad-hero);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 4.5rem 0;
 }
 
 .footer__cta-inner {
@@ -21,15 +20,15 @@
 
 /* Main Footer */
 .footer__main {
-  padding: 4rem 0 0;
+  padding: 5rem 0 0;
 }
 
 .footer__grid {
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr 1fr;
-  gap: 3rem;
-  padding-bottom: 3rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  grid-template-columns: 2fr 1.2fr 1fr 1fr;
+  gap: 4rem;
+  padding-bottom: 4rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 /* Brand */
@@ -37,76 +36,81 @@
   display: flex;
   align-items: center;
   gap: 0.6rem;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
   font-family: var(--font-display);
-  font-size: 1.4rem;
+  font-size: 1.5rem;
   font-weight: 700;
   color: var(--white);
 }
 
 .footer__logo .logo-accent {
-  color: var(--gold-400);
+  color: var(--brand-secondary);
 }
 
 .footer__tagline {
-  color: rgba(255, 255, 255, 0.5);
-  font-size: 0.9rem;
-  line-height: 1.7;
-  margin-bottom: 1.75rem;
-  max-width: 300px;
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 0.95rem;
+  line-height: 1.8;
+  margin-bottom: 2rem;
+  max-width: 320px;
 }
 
 .footer__socials {
   display: flex;
-  gap: 0.75rem;
+  gap: 1rem;
 }
 
 .social-btn {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  font-size: 1.1rem;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  font-size: 1.2rem;
   transition: all var(--transition-fast);
   cursor: pointer;
+  color: rgba(255, 255, 255, 0.6);
 }
 
 .social-btn:hover {
-  background: var(--gold-600);
-  border-color: var(--gold-500);
-  transform: translateY(-2px);
+  background: var(--brand-primary);
+  border-color: var(--brand-primary);
+  color: var(--white);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-primary);
 }
 
 /* Link Columns */
 .footer__col-heading {
   font-family: var(--font-body);
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--gold-400);
-  margin-bottom: 1.25rem;
+  color: var(--white);
+  margin-bottom: 1.75rem;
 }
 
 .footer__links {
   display: flex;
   flex-direction: column;
-  gap: 0.65rem;
+  gap: 0.85rem;
 }
 
 .footer__link {
-  color: rgba(255, 255, 255, 0.5);
-  font-size: 0.9rem;
-  transition: color var(--transition-fast);
+  color: rgba(255, 255, 255, 0.45);
+  font-size: 0.95rem;
+  transition: all var(--transition-fast);
   cursor: pointer;
+  font-weight: 500;
 }
 
 .footer__link:hover {
-  color: var(--gold-400);
+  color: var(--brand-secondary);
+  padding-left: 4px;
 }
 
 /* Bottom */
@@ -114,25 +118,27 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1.5rem 0;
-  gap: 1rem;
+  padding: 2rem 0;
+  gap: 1.5rem;
   flex-wrap: wrap;
 }
 
 .footer__copy {
-  color: rgba(255, 255, 255, 0.35);
+  color: rgba(255, 255, 255, 0.25);
   font-size: 0.85rem;
+  font-weight: 500;
 }
 
 .footer__legal {
   display: flex;
-  gap: 1.5rem;
+  gap: 2rem;
 }
 
 /* Responsive */
 @media (max-width: 900px) {
   .footer__grid {
     grid-template-columns: 1fr 1fr;
+    gap: 3rem;
   }
   .footer__brand {
     grid-column: span 2;
@@ -149,9 +155,13 @@
   .footer__cta-inner {
     flex-direction: column;
     text-align: center;
+    gap: 1.5rem;
   }
   .footer__bottom {
     flex-direction: column;
     text-align: center;
+  }
+  .footer__legal {
+    justify-content: center;
   }
 }
