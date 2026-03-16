@@ -1,0 +1,55 @@
+.admin-login-page{
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+background:#f6f6f6;
+font-family:Arial;
+}
+
+.login-card{
+width:380px;
+background:white;
+padding:40px;
+border-radius:12px;
+box-shadow:0 10px 30px rgba(0,0,0,0.08);
+text-align:center;
+}
+
+.login-card h2{
+margin-bottom:25px;
+color:#c9a227; /* gold */
+}
+
+.login-card form{
+display:flex;
+flex-direction:column;
+gap:15px;
+}
+
+.login-card input{
+padding:12px;
+border:1px solid #ddd;
+border-radius:8px;
+font-size:14px;
+}
+
+.login-card input:focus{
+outline:none;
+border-color:#c9a227;
+}
+
+.login-card button{
+padding:12px;
+background:#c9a227;
+color:white;
+border:none;
+border-radius:8px;
+font-size:15px;
+cursor:pointer;
+transition:0.3s;
+}
+
+.login-card button:hover{
+background:#b8961d;
+}

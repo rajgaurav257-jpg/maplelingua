@@ -8,6 +8,8 @@ import Blog from './pages/Blog';
 import Contact from './pages/Contact';
 import Preloader from './components/Preloader';
 import './App.css';
+import Admin from "./pages/admin";
+import AdminLogin from "./pages/adminLogin";
 
 export default function App() {
   const [loading, setLoading] = useState(true);
@@ -23,6 +25,8 @@ export default function App() {
           <Route path="/blog" element={<Blog />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="*" element={<NotFound />} />
+          <Route path="/admin" element={<Admin />} />
+          <Route path="/admin-login" element={<AdminLogin />} />
         </Routes>
         <Footer />
       </div>

@@ -1,3 +1,4 @@
+import ReCAPTCHA from "react-google-recaptcha";
 import { useState } from 'react';
 import { 
   FiMapPin, 
@@ -14,8 +15,6 @@ import './Contact.css';
 
 // ============================================================
 // 🔧 GOOGLE SHEETS INTEGRATION
-const GOOGLE_SCRIPT_URL = 'https://script.google.com/a/macros/mangotreetech.com/s/AKfycbyV7hsl31NUWl7mL8zFAnbUjSV-xlUtS00XUmEjfsU0Ji_JgzmfQA3fb_bnDQmVwQEOFQ/exec';
-
 const contactInfo = [
   { icon: <FiMapPin />, label: 'Address', value: 'Dwarka, New Delhi, India' },
   { icon: <FiMail />, label: 'Email', value: 'hello@maplelingua.ca' },
@@ -35,27 +34,72 @@ const [formData, setFormData] = useState({
   language: '',
   message: '',
 });
-  const [status, setStatus] = useState('idle'); // idle | loading | success | error
+ const [status, setStatus] = useState('idle'); // idle | loading | success | error
+const [error, setError] = useState("");
+const [captcha, setCaptcha] = useState(null);
+ 
 
   const handleChange = e => {
     setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
   };
+  const validateForm = () => {
 
-  const handleSubmit = async e => {
-    e.preventDefault();
-    setStatus('loading');
+  if (!formData.name.trim()) {
+    return "Name is required";
+  }
+
+  if (!formData.email.includes("@")) {
+    return "Valid email required";
+  }
+
+  if (formData.phone && formData.phone.length < 10) {
+    return "Phone must be at least 10 digits";
+  }
+
+  if (!formData.language) {
+    return "Please select a language";
+  }
+
+  if (!formData.message.trim()) {
+    return "Message cannot be empty";
+  }
+  if (!captcha) {
+  return "Please verify that you are not a robot";
+  }
+
+  return null;
+};
+
+
+ const handleSubmit = async e => {
+
+  e.preventDefault();
+
+  const validationError = validateForm();
+
+  if (validationError) {
+    setError(validationError);
+    return;
+  }
+
+  setError("");
+
+  setStatus('loading');
 
     try {
-      const body = new URLSearchParams({
-        ...formData,
-        timestamp: new Date().toISOString(),
-      });
+      const body = JSON.stringify({
+      ...formData,
+     captcha,
+      timestamp: new Date().toISOString(),
+    });
 
-      await fetch(GOOGLE_SCRIPT_URL, {
-        method: 'POST',
-        body,
-        mode: 'no-cors',
-      });
+      await fetch("http://localhost:5000/contact", {
+      method: "POST",
+      headers: {
+    "Content-Type": "application/json",
+     },
+      body,
+     });
 
       setStatus('success');
       setFormData({ name: '', email: '', phone: '', language: '', message: '' });    } catch (err) {
@@ -225,12 +269,21 @@ const [formData, setFormData] = useState({
                         required
                       />
                     </div>
+                    {error && (
+                     <div className="form-error">
+                       <FiAlertCircle /> {error}
+                        </div>
+                         )}
 
                     {status === 'error' && (
                       <div className="form-error" id="form-error">
                         <FiAlertCircle /> Something went wrong. Please check your connection and try again.
                       </div>
                     )}
+                    <ReCAPTCHA
+                    sitekey="6LfCsYssAAAAABwC1JFXLvjIl8FqyjKUNMpSNVAz"
+                    onChange={(value) => setCaptcha(value)}
+                    />
 
                     <button
                       type="submit"
