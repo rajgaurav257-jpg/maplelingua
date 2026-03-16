@@ -4,17 +4,31 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: #FAF8F4; /* Ultra light champagne */
-  z-index: 99999; /* Ensure it stays above everything */
+  background: radial-gradient(circle at center, #FAF8F4 0%, #F5F2ED 100%);
+  z-index: 99999;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: opacity 1s ease-in-out;
+  transition: opacity 1.2s cubic-bezier(0.65, 0, 0.35, 1);
   overflow: hidden;
 }
 
+/* Elite Grain Effect */
+.preloader::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url("https://grainy-gradients.vercel.app/noise.svg");
+  opacity: 0.04;
+  pointer-events: none;
+  z-index: 1;
+}
+
 .preloader--exit {
-  transform: translateY(-100%);
+  transform: scale(1.1);
   opacity: 0;
   pointer-events: none;
 }
@@ -28,86 +42,141 @@
   align-items: center;
   justify-content: center;
   padding: 4rem;
+  z-index: 2;
 }
 
 .merger-container {
   position: relative;
   width: 100%;
-  max-width: 600px;
-  height: 120px;
+  max-width: 900px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3rem;
+}
+
+.merger-words {
+  position: relative;
+  height: 100px;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: visible;
+  margin-top: -1.5rem;
+}
+
+.merger-line {
+  position: absolute;
+  bottom: -15px;
+  left: 50%;
+  transform: translateX(-50%) scaleX(0);
+  width: 200px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--brand-secondary), transparent);
+  transition: transform 1s cubic-bezier(0.22, 1, 0.36, 1);
+  transform-origin: center;
+  overflow: hidden;
+}
+
+.merger-line::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.8), transparent);
+  animation: none;
+}
+
+.merger-container.logo-active .merger-line {
+  transform: translateX(-50%) scaleX(1);
+}
+
+.merger-container.logo-active .merger-line::after {
+  animation: line-shimmer 2s infinite;
+}
+
+@keyframes line-shimmer {
+  0% { left: -100%; }
+  100% { left: 200%; }
 }
 
 .merger-word {
-  font-family: var(--font-body);
-  font-size: clamp(2.5rem, 8vw, 5rem);
-  font-weight: 900;
+  font-family: var(--font-display);
+  font-size: clamp(3.5rem, 12vw, 7.5rem);
+  font-weight: 800;
   color: var(--slate-900);
-  letter-spacing: 0.5em; /* Start airy */
+  letter-spacing: 0.6em;
   position: absolute;
-  transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 1.2s cubic-bezier(0.22, 1, 0.36, 1);
   white-space: nowrap;
+  opacity: 0;
+  filter: blur(10px);
 }
 
 .merger-word.maple {
   right: 50%;
-  transform: translateX(-150%);
-  opacity: 0;
+  transform: translateX(-30%) scale(0.9);
 }
 
 .merger-word.lingua {
   left: 50%;
-  transform: translateX(150%);
-  opacity: 0;
+  transform: translateX(30%) scale(0.9);
 }
 
 /* Merged State */
 .merger-container.merged .merger-word {
   opacity: 1;
-  letter-spacing: -0.02em; /* Snap to tight premium kerning */
+  letter-spacing: -0.02em;
+  transform: translateX(0) scale(1);
+  filter: blur(0);
 }
 
 .merger-container.merged .merger-word.maple {
-  transform: translateX(0); /* Converge */
+  color: var(--slate-900);
 }
 
 .merger-container.merged .merger-word.lingua {
-  transform: translateX(0); /* Converge */
-  color: var(--brand-secondary); /* Turn Gold */
+  color: var(--brand-secondary);
 }
 
-/* The Shimmer Effect */
-.merger-container::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -150%;
-  width: 50%;
+/* Logo Reveal */
+.logo-reveal {
+  height: 220px;
+  overflow: visible;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transform: translateY(80px) scale(0.2);
+  transition: all 1.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.preloader__logo {
   height: 100%;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 255, 255, 0.8),
-    transparent
-  );
-  transform: skewX(-20deg);
-  z-index: 10;
-  pointer-events: none;
+  width: auto;
+  filter: drop-shadow(0 20px 40px rgba(0,0,0,0.08));
 }
 
-.merger-container.merged::after {
-  animation: shine-sweep 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-  animation-delay: 1s; /* Trigger as they meet */
+.merger-container.logo-active .logo-reveal {
+  opacity: 1;
+  transform: translateY(0) scale(1);
 }
 
-@keyframes shine-sweep {
-  0% { left: -150%; }
-  100% { left: 250%; }
+/* Subtle floating for logo */
+.merger-container.logo-active .preloader__logo {
+  animation: float-logo 4s ease-in-out infinite;
+}
+
+@keyframes float-logo {
+  0%, 100% { transform: translateY(0) rotate(0); }
+  50% { transform: translateY(-15px) rotate(1deg); }
 }
 
 @media (max-width: 768px) {
-  .merger-word { font-size: 3rem; }
+  .logo-reveal { height: 120px; }
+  .merger-container { gap: 2rem; }
+  .merger-word { font-size: 3.5rem; }
 }

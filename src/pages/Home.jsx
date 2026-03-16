@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { 
-  FiTarget, 
-  FiMic, 
-  FiSmartphone, 
-  FiAward, 
-  FiUnlock, 
+import {
+  FiTarget,
+  FiMic,
+  FiSmartphone,
+  FiAward,
+  FiUnlock,
   FiArrowRight,
   FiZap,
   FiBookOpen,
@@ -22,6 +22,7 @@ import {
 import { HiOutlineLightBulb, HiOutlineGlobeAlt, HiOutlineChartBar } from 'react-icons/hi';
 import heroImg from '../assets/hero-premium.jpg';
 import { useReveal } from '../hooks/useReveal';
+import GlobePreloader from '../components/GlobePreloader';
 import './Home.css';
 
 const GOOGLE_SCRIPT_URL = 'https://script.google.com/a/macros/mangotreetech.com/s/AKfycbyV7hsl31NUWl7mL8zFAnbUjSV-xlUtS00XUmEjfsU0Ji_JgzmfQA3fb_bnDQmVwQEOFQ/exec';
@@ -91,9 +92,27 @@ const testimonials = [
 ];
 
 const levels = [
-  { level: 'A1–A2', name: 'Débutant', desc: 'Greetings, numbers, everyday phrases', color: '#4CAF50' },
-  { level: 'B1–B2', name: 'Intermédiaire', desc: 'Travel, work, culture & conversation', color: '#C9A84C' },
-  { level: 'C1–C2', name: 'Avancé', desc: 'Fluent discourse, literature & business', color: '#9C27B0' },
+  {
+    level: 'A1–A2',
+    name: 'Débutant',
+    desc: 'Master the basics: greetings, numbers, and everyday phrases for a solid foundation.',
+    color: '#4CAF50',
+    icon: <FiZap />
+  },
+  {
+    level: 'B1–B2',
+    name: 'Intermédiaire',
+    desc: 'Bridge the gap: Travel, work, and fluid conversation in a variety of cultural contexts.',
+    color: '#C9A84C',
+    icon: <FiBookOpen />
+  },
+  {
+    level: 'C1–C2',
+    name: 'Avancé',
+    desc: 'Reach mastery: Fluent discourse, complex literature, and professional business French.',
+    color: '#9C27B0',
+    icon: <FiAward />
+  },
 ];
 
 const frenchPrograms = [
@@ -239,33 +258,24 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Right Side: Visual Card */}
-          <div className="hero__visual animate-fadeIn perspective-3d">
-            <div className="hero-card-v2 tilt-effect">
-              <div className="fluency-badge-v2">
-                <span className="fb-num">98%</span>
-                <span className="fb-text">FLUENCY RATE</span>
+          <div className="hero__middle animate-fadeUp delay-200">
+            <div className="hero__search mt-xl">
+              <div className="search-box-wrapper">
+                <input type="text" placeholder="What do you want to learn today?" className="form-control" />
+                <button className="btn btn-primary"><FiTarget /></button>
               </div>
-              
-              <div className="hc-img-wrap">
-                <img 
-                  src={heroImg} 
-                  alt="Language learners collaboration" 
-                  className="hc-main-img" 
-                />
-              </div>
-
-              <div className="hc-testimonial-v2">
-                <div className="testimonial__meta">
-                  <span className="tm-label">LIVE SESSION</span>
-                  <span className="tm-now"><span className="dot-red"></span> NOW</span>
-                </div>
-                <p className="tm-quote">
-                  "The most effective way to learn. My tutor was exceptional at tailoring sessions to my business needs."
-                </p>
-                <p className="tm-author">— Julian V., CEO at FinTech Global</p>
-              </div>
+              <ul className="hero__features-list">
+                <li><FiCheckCircle className="text-gold" /> Native French Tutors</li>
+                <li><FiCheckCircle className="text-gold" /> CEFR Aligned Curriculum</li>
+                <li><FiCheckCircle className="text-gold" /> Flexible Scheduling</li>
+              </ul>
             </div>
+          </div>
+
+          {/* Right Side: Visual Card (3D Globe) */}
+          <div className="hero__visual perspective-3d">
+            {/* Globe spins freely with no background container */}
+            <GlobePreloader heroMode={true} />
           </div>
         </div>
       </section>
@@ -340,7 +350,7 @@ export default function Home() {
       </section>
 
       {/* ===== LEVELS ===== */}
-      <section className="section reveal" id="levels">
+      <section className="section levels-section reveal" id="levels">
         <div className="container text-center">
           <p className="section-label">Find Your Level</p>
           <h2 className="heading-1 mb-md">Courses for Every Stage</h2>
@@ -349,13 +359,18 @@ export default function Home() {
           </p>
           <div className="grid-3 perspective-3d">
             {levels.map((l, i) => (
-              <div className="level-card card tilt-effect" key={i} id={`level-card-${i}`}>
+              <div className="level-card-v2 tilt-effect" key={i} id={`level-card-${i}`}>
+                <div className="level-icon-wrap" style={{ '--level-color': l.color }}>
+                  {l.icon}
+                </div>
                 <div className="level-badge" style={{ background: l.color }}>{l.level}</div>
                 <h3 className="heading-2 mt-md">{l.name}</h3>
-                <p className="text-secondary mt-sm">{l.desc}</p>
-                <Link to="/contact" className="btn btn-navy mt-md" style={{ display: 'inline-flex' }} id={`level-cta-${i}`}>
-                  Enroll Now
-                </Link>
+                <p className="text-secondary mt-sm body-lg">{l.desc}</p>
+                <div className="level-cta-wrap">
+                  <Link to="/contact" className="btn btn-navy-minimal mt-lg" id={`level-cta-${i}`}>
+                    Enroll Now <FiArrowRight className="ml-sm" />
+                  </Link>
+                </div>
               </div>
             ))}
           </div>
@@ -493,12 +508,12 @@ export default function Home() {
                 </div>
 
                 <div className="v3-footer">
-                   <div className="v3-badge-certified">
-                     <FiCheckCircle /> CERTIFIED PROGRESS
-                   </div>
-                   <div className="v3-xp-bar">
-                     <div className="v3-xp-fill" style={{ width: '70%' }}></div>
-                   </div>
+                  <div className="v3-badge-certified">
+                    <FiCheckCircle /> CERTIFIED PROGRESS
+                  </div>
+                  <div className="v3-xp-bar">
+                    <div className="v3-xp-fill" style={{ width: '70%' }}></div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -544,7 +559,7 @@ export default function Home() {
               <p className="lead mb-xl">
                 Ready to begin your journey or need more details? Our elite team of advisors is here to guide you toward the perfect learning path.
               </p>
-              
+
               <div className="hc-features">
                 <div className="hc-feat-item">
                   <div className="hc-feat-icon"><FiMail /></div>
@@ -576,47 +591,47 @@ export default function Home() {
                   <form className="hc-form" onSubmit={handleSubmit}>
                     <div className="hc-form-group">
                       <label htmlFor="hc-name">Full Name</label>
-                      <input 
-                        type="text" 
-                        id="hc-name" 
-                        name="name" 
-                        placeholder="Jean Dupont" 
-                        value={formData.name} 
+                      <input
+                        type="text"
+                        id="hc-name"
+                        name="name"
+                        placeholder="Jean Dupont"
+                        value={formData.name}
                         onChange={handleChange}
-                        required 
+                        required
                       />
                     </div>
                     <div className="hc-form-group">
                       <label htmlFor="hc-email">Email Address</label>
-                      <input 
-                        type="email" 
-                        id="hc-email" 
-                        name="email" 
-                        placeholder="jean@example.com" 
-                        value={formData.email} 
+                      <input
+                        type="email"
+                        id="hc-email"
+                        name="email"
+                        placeholder="jean@example.com"
+                        value={formData.email}
                         onChange={handleChange}
-                        required 
+                        required
                       />
                     </div>
                     <div className="hc-form-group">
                       <label htmlFor="hc-phone">Phone Number</label>
-                      <input 
-                        type="tel" 
-                        id="hc-phone" 
-                        name="phone" 
-                        placeholder="+33 1 23 45 67 89" 
-                        value={formData.phone} 
+                      <input
+                        type="tel"
+                        id="hc-phone"
+                        name="phone"
+                        placeholder="+33 1 23 45 67 89"
+                        value={formData.phone}
                         onChange={handleChange}
                       />
                     </div>
                     <div className="hc-form-group">
                       <label htmlFor="hc-message">Your Message</label>
-                      <textarea 
-                        id="hc-message" 
-                        name="message" 
-                        placeholder="How can we help you master French?" 
-                        rows="4" 
-                        value={formData.message} 
+                      <textarea
+                        id="hc-message"
+                        name="message"
+                        placeholder="How can we help you master French?"
+                        rows="4"
+                        value={formData.message}
                         onChange={handleChange}
                         required
                       ></textarea>
