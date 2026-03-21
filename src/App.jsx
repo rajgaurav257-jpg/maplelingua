@@ -10,6 +10,7 @@ import Preloader from './components/Preloader';
 import './App.css';
 import Admin from "./pages/admin";
 import AdminLogin from "./pages/adminLogin";
+import { Analytics } from "@vercel/analytics/next";
 
 export default function App() {
   const [loading, setLoading] = useState(true);
@@ -30,6 +31,7 @@ export default function App() {
         </Routes>
         <Footer />
       </div>
+      <Analytics />
     </BrowserRouter>
   );
 }
