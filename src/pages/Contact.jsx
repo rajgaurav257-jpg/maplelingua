@@ -1,12 +1,12 @@
 import ReCAPTCHA from "react-google-recaptcha";
 import { useState } from 'react';
-import { 
-  FiMapPin, 
-  FiMail, 
-  FiPhone, 
-  FiClock, 
-  FiCheckCircle, 
-  FiAlertCircle, 
+import {
+  FiMapPin,
+  FiMail,
+  FiPhone,
+  FiClock,
+  FiCheckCircle,
+  FiAlertCircle,
   FiSend,
   FiZap,
   FiLock
@@ -17,8 +17,8 @@ import './Contact.css';
 // 🔧 GOOGLE SHEETS INTEGRATION
 const contactInfo = [
   { icon: <FiMapPin />, label: 'Address', value: 'Dwarka, New Delhi, India' },
-  { icon: <FiMail />, label: 'Email', value: 'hello@maplelingua.ca' },
-  { icon: <FiPhone />, label: 'Phone', value: '+91-98765 43210' },
+  { icon: <FiMail />, label: 'Email', value: 'raj.gaurav257@gmail.com' },
+  { icon: <FiPhone />, label: 'Phone', value: '+91-7042113408' },
   { icon: <FiClock />, label: 'Hours', value: 'Mon–Fri: 9AM – 6PM EST' },
 ];
 
@@ -27,82 +27,83 @@ const languages = [
 ];
 
 export default function Contact() {
-const [formData, setFormData] = useState({
-  name: '',
-  email: '',
-  phone: '',
-  language: '',
-  message: '',
-});
- const [status, setStatus] = useState('idle'); // idle | loading | success | error
-const [error, setError] = useState("");
-const [captcha, setCaptcha] = useState(null);
- 
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    language: '',
+    message: '',
+  });
+  const [status, setStatus] = useState('idle'); // idle | loading | success | error
+  const [error, setError] = useState("");
+  const [captcha, setCaptcha] = useState(null);
+
 
   const handleChange = e => {
     setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
   };
   const validateForm = () => {
 
-  if (!formData.name.trim()) {
-    return "Name is required";
-  }
+    if (!formData.name.trim()) {
+      return "Name is required";
+    }
 
-  if (!formData.email.includes("@")) {
-    return "Valid email required";
-  }
+    if (!formData.email.includes("@")) {
+      return "Valid email required";
+    }
 
-  if (formData.phone && formData.phone.length < 10) {
-    return "Phone must be at least 10 digits";
-  }
+    if (formData.phone && formData.phone.length < 10) {
+      return "Phone must be at least 10 digits";
+    }
 
-  if (!formData.language) {
-    return "Please select a language";
-  }
+    if (!formData.language) {
+      return "Please select a language";
+    }
 
-  if (!formData.message.trim()) {
-    return "Message cannot be empty";
-  }
-  if (!captcha) {
-  return "Please verify that you are not a robot";
-  }
+    if (!formData.message.trim()) {
+      return "Message cannot be empty";
+    }
+    if (!captcha) {
+      return "Please verify that you are not a robot";
+    }
 
-  return null;
-};
+    return null;
+  };
 
 
- const handleSubmit = async e => {
+  const handleSubmit = async e => {
 
-  e.preventDefault();
+    e.preventDefault();
 
-  const validationError = validateForm();
+    const validationError = validateForm();
 
-  if (validationError) {
-    setError(validationError);
-    return;
-  }
+    if (validationError) {
+      setError(validationError);
+      return;
+    }
 
-  setError("");
+    setError("");
 
-  setStatus('loading');
+    setStatus('loading');
 
     try {
       const body = JSON.stringify({
-      ...formData,
-     captcha,
-      timestamp: new Date().toISOString(),
-    });
+        ...formData,
+        captcha,
+        timestamp: new Date().toISOString(),
+      });
 
       await fetch("http://localhost:5000/contact", {
-      method: "POST",
-      headers: {
-    "Content-Type": "application/json",
-     },
-      body,
-     });
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body,
+      });
 
       setStatus('success');
-      setFormData({ name: '', email: '', phone: '', language: '', message: '' });    } catch (err) {
+      setFormData({ name: '', email: '', phone: '', language: '', message: '' });
+    } catch (err) {
       console.error(err);
       setStatus('error');
     }
@@ -238,21 +239,21 @@ const [captcha, setCaptcha] = useState(null);
                       <div className="form-group">
                         <label className="form-label" htmlFor="contact-language">Language *</label>
 
-                      <select
-                        id="contact-language"
-                        name="language"
-                        className="form-input form-select"
-                        value={formData.language}
-                        onChange={handleChange}
-                         required
-                         >
+                        <select
+                          id="contact-language"
+                          name="language"
+                          className="form-input form-select"
+                          value={formData.language}
+                          onChange={handleChange}
+                          required
+                        >
                           <option value="">Select language...</option>
 
                           {languages.map(lang => (
                             <option key={lang} value={lang}>{lang}</option>
-                            ))}
+                          ))}
 
-                            </select>
+                        </select>
                       </div>
                     </div>
 
@@ -270,10 +271,10 @@ const [captcha, setCaptcha] = useState(null);
                       />
                     </div>
                     {error && (
-                     <div className="form-error">
-                       <FiAlertCircle /> {error}
-                        </div>
-                         )}
+                      <div className="form-error">
+                        <FiAlertCircle /> {error}
+                      </div>
+                    )}
 
                     {status === 'error' && (
                       <div className="form-error" id="form-error">
@@ -281,8 +282,8 @@ const [captcha, setCaptcha] = useState(null);
                       </div>
                     )}
                     <ReCAPTCHA
-                    sitekey="6LfCsYssAAAAABwC1JFXLvjIl8FqyjKUNMpSNVAz"
-                    onChange={(value) => setCaptcha(value)}
+                      sitekey="6LfCsYssAAAAABwC1JFXLvjIl8FqyjKUNMpSNVAz"
+                      onChange={(value) => setCaptcha(value)}
                     />
 
                     <button
