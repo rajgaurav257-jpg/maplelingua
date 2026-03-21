@@ -10,7 +10,7 @@ import Preloader from './components/Preloader';
 import './App.css';
 import Admin from "./pages/admin";
 import AdminLogin from "./pages/adminLogin";
-import { Analytics } from "@vercel/analytics/next";
+import { Analytics } from "@vercel/analytics/react";
 
 export default function App() {
   const [loading, setLoading] = useState(true);
