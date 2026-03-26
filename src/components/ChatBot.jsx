@@ -8,7 +8,7 @@ const ChatBot = () => {
     {
       id: 1,
       role: 'assistant',
-      content: "Bonjour! I'm your Mapli Assistant. How can I help you start your French journey today?",
+      content: "Bonjour! I'm your Maplelingua Assistant. How can I help you start your French journey today?",
       time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
     }
   ]);
@@ -56,8 +56,8 @@ const ChatBot = () => {
     setIsLoading(true);
 
     try {
-      const systemPrompt = `You are Mapli Lingua Assistant, a helpful, professional AI chatbot for the Mapli Lingua website. 
-Mapli Lingua offers premium French language courses (A1, A2, B1, B2) and specialized exam preparation (DELF, TEF, TCF). 
+      const systemPrompt = `You are Maplelingua Assistant, a helpful, professional AI chatbot for the Maplelingua website. 
+Maplelingua offers premium French language courses (A1, A2, B1, B2) and specialized exam preparation (DELF, TEF, TCF). 
 Your goal is to help users find information, choose a course, and navigate the website.
 Keep your answers concise and friendly.
 CRITICAL INSTRUCTION: If the user asks about something that exists on the website, you MUST provide a relative clickable HTML link in exactly this format: <a href='/path'>Link Text</a>
@@ -159,8 +159,8 @@ Do NOT use Markdown links like [Text](url). ONLY use standard HTML anchor tags (
         <div className="chat-messages" onClick={handleLinkClick}>
           {messages.map((msg) => (
             <div key={msg.id} className={`message ${msg.role === 'user' ? 'user' : 'bot'}`}>
-              <div 
-                className="message-bubble" 
+              <div
+                className="message-bubble"
                 dangerouslySetInnerHTML={{ __html: msg.content }}
               />
               <span className="message-time">{msg.time}</span>
@@ -177,9 +177,9 @@ Do NOT use Markdown links like [Text](url). ONLY use standard HTML anchor tags (
         </div>
 
         <div className="chat-input-area">
-          <input 
-            type="text" 
-            placeholder="Type your message..." 
+          <input
+            type="text"
+            placeholder="Type your message..."
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
             onKeyPress={handleKeyPress}
@@ -200,7 +200,8 @@ Do NOT use Markdown links like [Text](url). ONLY use standard HTML anchor tags (
         </svg>
       </button>
 
-      <style dangerouslySetInnerHTML={{__html: `
+      <style dangerouslySetInnerHTML={{
+        __html: `
         .loading-dots span {
           animation: blink 1.4s infinite reverse;
         }
