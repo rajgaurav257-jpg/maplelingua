@@ -2,6 +2,7 @@ import React from 'react'
 import imgScale1 from '../assets/1st immage started section.png'
 import imgScale2 from '../assets/2st immage started section.png'
 import imgScale3 from '../assets/3st immage started section.png'
+import './Started.css';
 
 const Started = () => {
   return (

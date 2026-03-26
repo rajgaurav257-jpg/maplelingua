@@ -1,0 +1,94 @@
+/* Promo Sections (CTA & Newsletter) - Side-by-Side Optimization */
+.promo-section {
+  background-color: #ffffff;
+  color: #000000;
+  padding: 4rem 0;
+}
+
+.promo-section .container {
+  display: flex;
+  align-items: center;
+  gap: 4rem;
+  text-align: left; /* Switched from center */
+}
+
+.promo-content {
+  flex: 1;
+  margin-bottom: 0; /* Removed bottom margin */
+}
+
+.promo-title {
+  font-size: 2.8rem;
+  font-weight: 700;
+  margin-bottom: 1.2rem;
+  color: #000;
+  line-height: 1.1;
+}
+
+.promo-image-large {
+  flex: 1.2;
+  margin: 0;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 15px 30px rgba(0,0,0,0.08);
+  height: 400px; /* Fixed height for consistency */
+}
+
+.promo-image-large img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.promo-actions {
+  display: flex;
+  gap: 1.2rem;
+  justify-content: flex-start;
+}
+
+.newsletter-inline-form {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.newsletter-input {
+  flex: 1;
+  padding: 0.8rem 1.2rem;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 1rem;
+  color: #000;
+  background-color: #f9f9f9;
+}
+
+.newsletter-input::placeholder {
+  color: #999;
+}
+
+/* ======= Tablet ======= */
+@media (max-width: 1024px) {
+  .promo-section .container { gap: 2.5rem; }
+  .promo-title { font-size: 2.2rem; }
+}
+
+/* ======= Mobile ======= */
+@media (max-width: 768px) {
+  .promo-section { padding: 3rem 0; }
+  .promo-section .container {
+    flex-direction: column;
+    gap: 2rem;
+    text-align: center;
+  }
+  .promo-title { font-size: 1.9rem; }
+  .promo-image-large { height: 240px; }
+  .promo-actions {
+    flex-direction: column;
+    gap: 0.8rem;
+    align-items: center;
+  }
+  .promo-actions .btn { width: 100%; justify-content: center; }
+  .newsletter-inline-form { flex-direction: column; gap: 0.8rem; }
+  .newsletter-input { width: 100%; }
+}
+

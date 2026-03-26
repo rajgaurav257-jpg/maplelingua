@@ -1,5 +1,6 @@
 import React from 'react'
 import heroImg from '../assets/herosection.png'
+import './Hero.css';
 
 const Hero = () => {
   return (
@@ -10,7 +11,7 @@ const Hero = () => {
           
           <p className="hero-subtext">
             Master the language of diplomacy and culture with Global 
-            French Academy. Our instructors bring the streets of Paris to 
+            French Academy. Our instructors bring the essence of France to 
             your screen, no matter where you live.
           </p>
           

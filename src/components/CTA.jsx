@@ -1,5 +1,6 @@
 import React from 'react'
 import imgSpeak from '../assets/speak frech.png'
+import './CTA.css';
 
 const CTA = () => {
   return (

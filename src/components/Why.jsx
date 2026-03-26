@@ -2,6 +2,7 @@ import React from 'react'
 import img1 from '../assets/1st image of WHY section.png'
 import img2 from '../assets/2nd image of WHY section.png'
 import img3 from '../assets/3rd image of WHY section.png'
+import './Why.css';
 
 const Why = () => {
   const cards = [

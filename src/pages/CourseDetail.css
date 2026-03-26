@@ -1,0 +1,149 @@
+/* Course Detail Page */
+.stat-pill {
+  transition: all 0.3s ease;
+  cursor: default;
+}
+
+.stat-pill:hover {
+  background: rgba(255, 255, 255, 0.08) !important;
+  border-color: var(--primary-red) !important;
+}
+
+.outcome-item {
+  transition: transform 0.3s ease;
+}
+
+.outcome-item:hover {
+  transform: translateX(10px);
+}
+
+.curriculum-module {
+  border: 1px solid rgba(255,255,255,0.05) !important;
+  background: rgba(255,255,255,0.01) !important;
+}
+
+.curriculum-module:hover {
+  background: rgba(255,255,255,0.03) !important;
+  border-color: rgba(229, 90, 90, 0.2) !important;
+}
+
+@media (max-width: 992px) {
+  .course-quick-stats {
+    flex-wrap: wrap;
+    gap: 1rem !important;
+  }
+  .curriculum-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* Curriculum Redesign */
+.curriculum-steps-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 3rem;
+}
+
+.curriculum-card {
+  display: flex !important;
+  flex-direction: column;
+  padding: 0 !important;
+  overflow: hidden;
+  border-radius: 32px !important;
+  background: #ffffff !important;
+  border: 1px solid rgba(0,0,0,0.04) !important;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.03) !important;
+  transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1) !important;
+}
+
+.curriculum-card:hover {
+  transform: translateY(-12px);
+  box-shadow: 0 40px 80px rgba(229, 90, 90, 0.08) !important;
+  border-color: rgba(229, 90, 90, 0.2) !important;
+}
+
+.curriculum-card .card-header {
+  padding: 2rem 3rem 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: linear-gradient(to right, rgba(229, 90, 90, 0.03), transparent);
+}
+
+.mod-label {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: #888;
+  font-weight: 600;
+}
+
+.mod-index {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--primary-red);
+}
+
+.curriculum-card .card-body {
+  padding: 0 3rem 3rem;
+}
+
+.curriculum-card h3 {
+  font-size: 1.8rem;
+  margin-bottom: 1.2rem;
+  color: #1a1a1a;
+  font-weight: 800;
+}
+
+.mod-desc {
+  font-size: 1.05rem;
+  color: #555;
+  line-height: 1.7;
+  margin-bottom: 2rem;
+}
+
+.topics-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.topic-tag {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  font-size: 0.95rem;
+  color: #444;
+  font-weight: 500;
+}
+
+.topic-tag .dot {
+  width: 6px;
+  height: 6px;
+  background: var(--primary-red);
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(229, 90, 90, 0.3);
+}
+
+@media (max-width: 992px) {
+  .course-quick-stats {
+    flex-wrap: wrap;
+    gap: 1rem !important;
+  }
+  .curriculum-grid { grid-template-columns: 1fr !important; }
+  .curriculum-steps-grid { grid-template-columns: 1fr; gap: 2rem; }
+}
+
+@media (max-width: 768px) {
+  .curriculum-card .card-header,
+  .curriculum-card .card-body {
+    padding: 1.5rem;
+  }
+  .curriculum-card h3 { font-size: 1.3rem; }
+  .curriculum-card { border-radius: 20px !important; }
+  .topics-list { grid-template-columns: 1fr; gap: 0.8rem; }
+  .topic-tag { font-size: 0.9rem; }
+  .mod-desc { font-size: 0.95rem; }
+  .outcome-item { padding: 0.8rem 1rem !important; }
+}
+

@@ -1,0 +1,155 @@
+/* Started Section (Light Theme) */
+.started-section {
+  background-color: #ffffff;
+  color: #000000;
+  padding: 4rem 0; /* Reduced from 8rem */
+}
+
+.started-header {
+  text-align: center;
+  margin-bottom: 3rem; /* Reduced from 5rem */
+}
+
+.started-tag {
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  letter-spacing: 0.1em;
+  color: #666;
+}
+
+.started-title {
+  font-size: 2.8rem; /* Reduced from 3.5rem */
+  font-weight: 700;
+  margin-bottom: 1.2rem;
+  color: #000;
+}
+
+.started-subtitle {
+  font-size: 1.2rem;
+  color: #666;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.started-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 2.2fr; /* Matched to screenshot proportions */
+  gap: 1.5rem;
+  align-items: stretch;
+}
+
+.started-card {
+  background-color: #ffffff;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid #eee;
+  display: flex;
+  flex-direction: column;
+}
+
+.started-card-wide {
+  flex-direction: row;
+  grid-column: span 1;
+  min-height: 350px; /* Reduced from 450px */
+}
+
+.started-card-image {
+  height: 200px;
+  width: 100%;
+}
+
+.started-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.started-card-content {
+  padding: 1.5rem 1.2rem;
+  flex: 1;
+}
+
+.started-card-image-half {
+  flex: 1.1; /* Slightly more space for the person image */
+}
+
+.started-card-image-half img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.started-card-content-half {
+  flex: 1;
+  padding: 3rem 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.step-tag {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 700;
+  margin-bottom: 0.8rem;
+  color: #000;
+}
+
+.step-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 1.2rem;
+  color: #000;
+}
+
+.step-description {
+  font-size: 1rem;
+  color: #666;
+  margin-bottom: 1.5rem;
+  line-height: 1.5;
+}
+
+.step-link {
+  color: #000;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+}
+
+/* ======= Tablet ======= */
+@media (max-width: 1024px) {
+  .started-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .started-card-wide {
+    grid-column: span 2;
+  }
+  .started-title { font-size: 2.2rem; }
+}
+
+/* ======= Mobile ======= */
+@media (max-width: 768px) {
+  .started-section { padding: 3rem 0; }
+  .started-title { font-size: 1.9rem; }
+  .started-subtitle { font-size: 1rem; }
+  .started-grid {
+    grid-template-columns: 1fr;
+    gap: 1.2rem;
+  }
+  .started-card-wide {
+    flex-direction: column;
+    grid-column: span 1;
+    min-height: auto;
+  }
+  .started-card-image { height: 200px; }
+  .started-card-image-half { height: 220px; }
+  .started-card-content-half { padding: 1.5rem; }
+  .step-title { font-size: 1.4rem; }
+}
+

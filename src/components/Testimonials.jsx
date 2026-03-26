@@ -2,12 +2,13 @@ import React from 'react'
 import avatarMarie from '../assets/avatar_marie.png'
 import avatarJames from '../assets/avatar_james.png'
 import avatarSofia from '../assets/avatar_sofia.png'
+import './Testimonials.css';
 
 const Testimonials = () => {
   const reviews = [
     {
       name: 'Marie Dubois',
-      role: 'Marketing director, Paris',
+      role: 'Marketing Director',
       avatar: avatarMarie,
       text: 'Within three months I was holding conversations at dinner parties. The instructors made it feel natural, not forced.'
     },

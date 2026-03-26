@@ -1,0 +1,100 @@
+/* About Page Specific Refinements */
+.stats-mini-grid {
+  display: flex;
+  gap: 3rem;
+  margin-bottom: 3rem;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  padding-bottom: 2rem;
+}
+
+.mini-stat {
+  display: flex;
+  flex-direction: column;
+}
+
+.stat-num {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--primary-red);
+}
+
+.stat-label {
+  font-size: 0.9rem;
+  color: var(--text-grey);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.accent-list.primary-dots li {
+  position: relative;
+  padding-left: 1.5rem;
+  margin-bottom: 1rem;
+  color: var(--text-grey);
+}
+
+.accent-list.primary-dots li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 10px;
+  width: 6px;
+  height: 6px;
+  background: var(--primary-red);
+  border-radius: 50%;
+}
+
+.exam-section-dark {
+  background: #0a0a0a;
+  color: #fff;
+}
+
+.exam-section-black {
+  background: #000;
+  color: #fff;
+}
+
+.exam-section-white {
+  background: #ffffff;
+  color: #000;
+}
+
+.exam-section-white h2,
+.exam-section-white h3,
+.exam-section-white h4 {
+  color: #000 !important;
+}
+
+.exam-section-white p {
+  color: #444 !important;
+}
+
+.exam-section-white .exam-card-premium {
+  background: #f8f8f8;
+  border: 1px solid #eee;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+}
+
+.exam-section-white .exam-card-premium h3 {
+  color: #000 !important;
+}
+
+.exam-section-white .exam-card-premium p {
+  color: #666 !important;
+}
+
+/* ======= Tablet ======= */
+@media (max-width: 1024px) {
+  .stats-mini-grid { gap: 2rem; }
+}
+
+/* ======= Mobile ======= */
+@media (max-width: 768px) {
+  .stats-mini-grid {
+    flex-wrap: wrap;
+    gap: 1.2rem;
+    margin-bottom: 2rem;
+  }
+  .mini-stat { min-width: calc(50% - 0.6rem); }
+  .stat-num { font-size: 2rem; }
+}
+

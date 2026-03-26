@@ -1,4 +1,6 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
+import './Footer.css';
 
 const Footer = () => {
   return (
@@ -13,66 +15,65 @@ const Footer = () => {
           <div className="newsletter-form">
             <div className="input-group">
               <input type="email" placeholder="Your email" />
-              <button className="btn btn-subscribe">Subscribe</button>
+              <button className="btn btn-subscribe">Subscribe Now</button>
             </div>
-            <p className="privacy-notice">By subscribing you agree to our Privacy Policy</p>
+            <p className="privacy-notice">By subscribing you agree to our <Link to="/info?page=Privacy Policy" style={{color: 'inherit', textDecoration: 'underline'}}>Privacy Policy</Link></p>
           </div>
         </div>
 
         {/* Middle Part: Links */}
         <div className="footer-middle">
           <div className="footer-brand">
-            <span className="logo-center" style={{fontSize: '2.5rem'}}>Logo</span>
+            <Link to="/" className="logo-center" style={{fontSize: '2.5rem', textDecoration: 'none', color: '#fff'}}>maplelingua</Link>
+            <p style={{color: 'var(--text-grey)', marginTop: '1rem', maxWidth: '300px'}}>The world's premier French language academy since 2015.</p>
           </div>
           <div className="footer-links-grid">
             <div className="footer-col">
               <h4>Learn</h4>
               <ul>
-                <li><a href="#courses">Courses</a></li>
-                <li><a href="#blog">Blog</a></li>
-                <li><a href="#resources">Resources</a></li>
-                <li><a href="#pricing">Pricing</a></li>
-                <li><a href="#faq">FAQ</a></li>
+                <li><Link to="/courses">All Courses</Link></li>
+                <li><Link to="/blog">Expert Blog</Link></li>
+                <li><Link to="/info?page=Resources">Free Resources</Link></li>
+                <li><Link to="/info?page=Pricing">Pricing Plans</Link></li>
+                <li><Link to="/faq">Student FAQ</Link></li>
               </ul>
             </div>
             <div className="footer-col">
               <h4>Company</h4>
               <ul>
-                <li><a href="#about">About us</a></li>
-                <li><a href="#contact">Contact</a></li>
-                <li><a href="#careers">Careers</a></li>
-                <li><a href="#press">Press</a></li>
-                <li><a href="#partners">Partners</a></li>
+                <li><Link to="/about">About us</Link></li>
+                <li><Link to="/contact">Contact</Link></li>
+                <li><Link to="/careers">Careers</Link></li>
+                <li><Link to="/press">News & Press</Link></li>
+                <li><Link to="/partners">Partnerships</Link></li>
               </ul>
             </div>
             <div className="footer-col">
               <h4>Support</h4>
               <ul>
-                <li><a href="#help">Help center</a></li>
-                <li><a href="#docs">Documentation</a></li>
-                <li><a href="#community">Community</a></li>
-                <li><a href="#status">Status page</a></li>
-                <li><a href="#contact-us">Contact us</a></li>
+                <li><Link to="/info?page=Help Center">Help center</Link></li>
+                <li><Link to="/info?page=Documentation">Platform Docs</Link></li>
+                <li><Link to="/info?page=Community">Community Forum</Link></li>
+                <li><Link to="/info?page=Status">System Status</Link></li>
+                <li><Link to="/contact">Report Issues</Link></li>
               </ul>
             </div>
             <div className="footer-col">
-              <h4>Social</h4>
+              <h4>Connect</h4>
               <ul>
-                <li><a href="#facebook">Facebook</a></li>
-                <li><a href="#instagram">Instagram</a></li>
-                <li><a href="#twitter">Twitter</a></li>
-                <li><a href="#linkedin">LinkedIn</a></li>
-                <li><a href="#youtube">YouTube</a></li>
+                <li><a href="https://facebook.com" target="_blank" rel="noreferrer">Facebook</a></li>
+                <li><a href="https://instagram.com" target="_blank" rel="noreferrer">Instagram</a></li>
+                <li><a href="https://twitter.com" target="_blank" rel="noreferrer">Twitter / X</a></li>
+                <li><a href="https://linkedin.com" target="_blank" rel="noreferrer">LinkedIn</a></li>
               </ul>
             </div>
             <div className="footer-col">
               <h4>Legal</h4>
               <ul>
-                <li><a href="#privacy">Privacy policy</a></li>
-                <li><a href="#terms">Terms of service</a></li>
-                <li><a href="#cookies">Cookie settings</a></li>
-                <li><a href="#accessibility">Accessibility</a></li>
-                <li><a href="#conduct">Code of conduct</a></li>
+                <li><Link to="/info?page=Privacy Policy">Privacy Policy</Link></li>
+                <li><Link to="/info?page=Terms of Service">Terms of Service</Link></li>
+                <li><Link to="/info?page=Cookies">Cookie Settings</Link></li>
+                <li><Link to="/info?page=Accessibility">Accessibility</Link></li>
               </ul>
             </div>
           </div>
@@ -81,19 +82,17 @@ const Footer = () => {
         {/* Bottom Part: Copyright */}
         <div className="footer-bottom">
           <div className="footer-bottom-left">
-            <p>© 2025 Global French Academy</p>
+            <p>© 2025 Global French Academy. All rights reserved.</p>
             <div className="bottom-links">
-              <a href="#privacy">Privacy policy</a>
-              <a href="#terms">Terms of service</a>
-              <a href="#cookies">Cookie settings</a>
+              <Link to="/info?page=Privacy Policy">Privacy</Link>
+              <Link to="/info?page=Terms">Terms</Link>
+              <Link to="/info?page=Cookies">Cookies</Link>
             </div>
           </div>
           <div className="footer-social-icons">
-            <a href="#fb"><i className="soc-icon">f</i></a>
-            <a href="#ig"><i className="soc-icon">ig</i></a>
-            <a href="#tw"><i className="soc-icon">x</i></a>
-            <a href="#li"><i className="soc-icon">in</i></a>
-            <a href="#yt"><i className="soc-icon">yt</i></a>
+            <a href="#fb" aria-label="Facebook"><i className="soc-icon">f</i></a>
+            <a href="#ig" aria-label="Instagram"><i className="soc-icon">ig</i></a>
+            <a href="#li" aria-label="LinkedIn"><i className="soc-icon">in</i></a>
           </div>
         </div>
       </div>
